@@ -59,7 +59,7 @@ class Database extends Config
         'hostname'     => 'localhost',
         'username'     => 'root',
         'password'     => 'root',
-        'database'     => 'NOM DE VOTRE DB',
+        'database'     => 'tournament-slam',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

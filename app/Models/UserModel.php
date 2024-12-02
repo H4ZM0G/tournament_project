@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['username', 'email', 'password', 'id_permission', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['username','name', 'firstname', 'email', 'password', 'id_permission', 'id_school', 'score', 'bio', 'created_at', 'updated_at', 'deleted_at'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
@@ -24,6 +24,9 @@ class UserModel extends Model
     // Validation
     protected $validationRules = [
         'username' => 'required|is_unique[user.username,id,{id}]|min_length[3]|max_length[100]',
+        'name' => '',
+        'firstname' => '',
+        'bio' => '',
         'email'    => 'required|valid_email|is_unique[user.email,id,{id}]',
         'password' => 'required|min_length[8]',
         'id_permission' => 'required|is_natural_no_zero',
@@ -35,6 +38,15 @@ class UserModel extends Model
             'min_length' => 'Le nom d\'utilisateur doit comporter au moins 3 caractères.',
             'max_length' => 'Le nom d\'utilisateur ne doit pas dépasser 100 caractères.',
             'is_unique'   => 'Ce nom d\'utilisateur est déja utilisé.',
+        ],
+        'name' => [
+
+        ],
+        'firstname' => [
+
+        ],
+        'bio' => [
+
         ],
         'email' => [
             'required'   => 'L\'email est requis.',

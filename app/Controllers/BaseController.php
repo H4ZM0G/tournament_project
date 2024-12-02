@@ -152,6 +152,8 @@ abstract class BaseController extends Controller
      * @param LoggerInterface $logger    Logger pour l'application.
      * @return void
      */
+
+    /** pour les messages */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);

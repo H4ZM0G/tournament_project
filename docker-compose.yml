@@ -3,7 +3,7 @@ services:
     image: mariadb:10.6
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: NOM DE VOTRE DB
+      MYSQL_DATABASE: tournament-slam
       MYSQL_USER: root
       MYSQL_PASSWORD: admin
     ports:

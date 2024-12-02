@@ -19,6 +19,14 @@ class TableUser extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'firstname' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
             'email' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -28,7 +36,21 @@ class TableUser extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'score' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
+                'default'    => 0
+            ],
+            'bio' => [
+                'type'       => 'TEXT',
+                'null'       => true,
+            ],
             'id_permission' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
+            'id_school' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,

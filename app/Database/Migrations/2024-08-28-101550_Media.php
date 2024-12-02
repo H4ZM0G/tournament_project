@@ -29,7 +29,7 @@ class Media extends Migration
             ],
             'entity_type' => [
                 'type' => 'ENUM',
-                'constraint' => ['user'],
+                'constraint' => ['user', 'game', 'tournament'],
                 'default' => 'user',
             ],
             'created_at' => [
