@@ -1,0 +1,488 @@
+CRITICAL - 2024-08-24 15:26:03 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "templates/head.php"
+[Method: GET, Route: Admin/Dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('templates/head.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('templates/head', [], true)
+ 3 APPPATH\Controllers\BaseController.php(165): view('templates/head', [...])
+ 4 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:26:29 --> start session
+INFO - 2024-08-24 15:26:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 15:26:29 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "templates/head.php"
+[Method: GET, Route: Admin/Dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('templates/head.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('templates/head', [], true)
+ 3 APPPATH\Controllers\BaseController.php(165): view('templates/head', [...])
+ 4 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:55:06 --> start session
+INFO - 2024-08-24 15:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 15:55:06 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "/templates/front/head.php"
+[Method: GET, Route: Admin/Dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/templates/front/head.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('/templates/front/head', [], true)
+ 3 APPPATH\Controllers\BaseController.php(165): view('/templates/front/head', [...])
+ 4 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:55:21 --> start session
+INFO - 2024-08-24 15:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 15:55:21 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "templates/sidebar.php"
+[Method: GET, Route: Admin/Dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('templates/sidebar.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('templates/sidebar', [], true)
+ 3 APPPATH\Views\templates\admin\head.php(69): view('templates/sidebar', [...])
+ 4 SYSTEMPATH\View\View.php(234): include('D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('/templates/admin/head', [], true)
+ 7 APPPATH\Controllers\BaseController.php(165): view('/templates/admin/head', [...])
+ 8 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php', [], true)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:56:08 --> start session
+INFO - 2024-08-24 15:56:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 15:56:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "templates/breadcrumb.php"
+[Method: GET, Route: Admin/Dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('templates/breadcrumb.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('templates/breadcrumb', [], true)
+ 3 APPPATH\Views\templates\admin\head.php(71): view('templates/breadcrumb')
+ 4 SYSTEMPATH\View\View.php(234): include('D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('/templates/admin/head', [], true)
+ 7 APPPATH\Controllers\BaseController.php(165): view('/templates/admin/head', [...])
+ 8 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php', [], true)
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:56:21 --> start session
+INFO - 2024-08-24 15:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 15:59:06 --> start session
+INFO - 2024-08-24 15:59:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 15:59:06 --> ErrorException: Undefined variable $template
+[Method: GET, Route: Admin/Dashboard]
+in APPPATH\Views\templates\admin\head.php on line 69.
+ 1 APPPATH\Views\templates\admin\head.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $template', 'D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php', 69)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('/templates/admin/head', [], true)
+ 5 APPPATH\Controllers\BaseController.php(165): view('/templates/admin/head', [...])
+ 6 APPPATH\Controllers\Admin\Dashboard.php(11): App\Controllers\BaseController->view('/admin/dashboard/index.php', [], true)
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 15:59:49 --> start session
+INFO - 2024-08-24 15:59:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:01:41 --> start session
+INFO - 2024-08-24 16:01:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:01:41 --> Oh
+DEBUG - 2024-08-24 16:01:41 --> start session
+INFO - 2024-08-24 16:01:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 16:01:41 --> ErrorException: Undefined variable $template
+[Method: GET, Route: Admin/Dashboard]
+in APPPATH\Views\templates\admin\head.php on line 69.
+ 1 APPPATH\Views\templates\admin\head.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $template', 'D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php', 69)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\wamp64\\www\\codeigniter\\ci-base-template\\app\\Views\\templates\\admin\\head.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('/templates/admin/head', [], true)
+ 5 APPPATH\Controllers\BaseController.php(166): view('/templates/admin/head', [...])
+ 6 APPPATH\Controllers\Admin\Dashboard.php(12): App\Controllers\BaseController->view('/admin/dashboard/index.php', [], true)
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\Dashboard->getIndex()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 16:02:06 --> start session
+INFO - 2024-08-24 16:02:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:02:12 --> start session
+INFO - 2024-08-24 16:02:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:02:12 --> Oh
+DEBUG - 2024-08-24 16:02:12 --> start session
+INFO - 2024-08-24 16:02:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:02:46 --> start session
+INFO - 2024-08-24 16:02:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:12 --> start session
+INFO - 2024-08-24 16:03:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:19 --> start session
+INFO - 2024-08-24 16:03:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:19 --> Oh
+DEBUG - 2024-08-24 16:03:19 --> start session
+INFO - 2024-08-24 16:03:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:23 --> start session
+INFO - 2024-08-24 16:03:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:24 --> start session
+INFO - 2024-08-24 16:03:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:24 --> start session
+INFO - 2024-08-24 16:03:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:03:28 --> start session
+INFO - 2024-08-24 16:03:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 16:04:15 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "@coreui"
+[Method: GET, Route: vendors/@coreui/chartjs/css/coreui-chartjs.css%22%20rel=%22stylesheet]
+in SYSTEMPATH\Router\Router.php on line 737.
+ 1 SYSTEMPATH\Router\Router.php(204): CodeIgniter\Router\Router->checkDisallowedChars('vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 16:04:53 --> start session
+INFO - 2024-08-24 16:04:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:05:04 --> start session
+INFO - 2024-08-24 16:05:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:13 --> start session
+INFO - 2024-08-24 16:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:13 --> Oh
+DEBUG - 2024-08-24 16:06:13 --> start session
+INFO - 2024-08-24 16:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:29 --> start session
+INFO - 2024-08-24 16:06:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:34 --> start session
+INFO - 2024-08-24 16:06:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:34 --> Oh
+DEBUG - 2024-08-24 16:06:42 --> start session
+INFO - 2024-08-24 16:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:42 --> Oh
+DEBUG - 2024-08-24 16:06:42 --> start session
+INFO - 2024-08-24 16:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:44 --> start session
+INFO - 2024-08-24 16:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:48 --> start session
+INFO - 2024-08-24 16:06:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:06:48 --> Oh
+DEBUG - 2024-08-24 16:06:48 --> start session
+INFO - 2024-08-24 16:06:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:23 --> start session
+INFO - 2024-08-24 16:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:23 --> Oh
+DEBUG - 2024-08-24 16:07:23 --> start session
+INFO - 2024-08-24 16:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:45 --> start session
+INFO - 2024-08-24 16:07:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:48 --> start session
+INFO - 2024-08-24 16:07:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:59 --> start session
+INFO - 2024-08-24 16:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:07:59 --> Oh
+DEBUG - 2024-08-24 16:07:59 --> start session
+INFO - 2024-08-24 16:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:08:37 --> start session
+INFO - 2024-08-24 16:08:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:08:39 --> start session
+INFO - 2024-08-24 16:08:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:08:46 --> start session
+INFO - 2024-08-24 16:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:08:46 --> Oh
+DEBUG - 2024-08-24 16:08:46 --> start session
+INFO - 2024-08-24 16:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:09:37 --> start session
+INFO - 2024-08-24 16:09:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:09:39 --> start session
+INFO - 2024-08-24 16:09:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:09:42 --> start session
+INFO - 2024-08-24 16:09:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:09:42 --> Oh
+DEBUG - 2024-08-24 16:09:42 --> start session
+INFO - 2024-08-24 16:09:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:10:00 --> start session
+INFO - 2024-08-24 16:10:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:10:49 --> start session
+INFO - 2024-08-24 16:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:10:49 --> Oh
+DEBUG - 2024-08-24 16:10:49 --> start session
+INFO - 2024-08-24 16:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:10 --> start session
+INFO - 2024-08-24 16:14:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:14 --> start session
+INFO - 2024-08-24 16:14:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:14 --> Oh
+DEBUG - 2024-08-24 16:14:14 --> start session
+INFO - 2024-08-24 16:14:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:54 --> start session
+INFO - 2024-08-24 16:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:59 --> start session
+INFO - 2024-08-24 16:14:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:14:59 --> Oh
+DEBUG - 2024-08-24 16:14:59 --> start session
+INFO - 2024-08-24 16:14:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:26 --> start session
+INFO - 2024-08-24 16:15:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:26 --> Oh
+DEBUG - 2024-08-24 16:15:26 --> start session
+INFO - 2024-08-24 16:15:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:36 --> start session
+INFO - 2024-08-24 16:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:36 --> Oh
+DEBUG - 2024-08-24 16:15:36 --> start session
+INFO - 2024-08-24 16:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:54 --> start session
+INFO - 2024-08-24 16:15:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:59 --> start session
+INFO - 2024-08-24 16:15:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:15:59 --> Oh
+DEBUG - 2024-08-24 16:15:59 --> start session
+INFO - 2024-08-24 16:15:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:16:09 --> start session
+INFO - 2024-08-24 16:16:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:19:01 --> start session
+INFO - 2024-08-24 16:19:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:19:01 --> Oh
+DEBUG - 2024-08-24 16:19:01 --> start session
+INFO - 2024-08-24 16:19:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:19:20 --> start session
+INFO - 2024-08-24 16:19:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:19:20 --> Oh
+DEBUG - 2024-08-24 16:19:20 --> start session
+INFO - 2024-08-24 16:19:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:25:50 --> start session
+INFO - 2024-08-24 16:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:25:53 --> start session
+INFO - 2024-08-24 16:25:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:25:53 --> Oh
+DEBUG - 2024-08-24 16:25:53 --> start session
+INFO - 2024-08-24 16:25:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:26:16 --> start session
+INFO - 2024-08-24 16:26:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:26:21 --> start session
+INFO - 2024-08-24 16:26:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:26:21 --> Oh
+DEBUG - 2024-08-24 16:26:21 --> start session
+INFO - 2024-08-24 16:26:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:29:07 --> start session
+INFO - 2024-08-24 16:29:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:29:10 --> start session
+INFO - 2024-08-24 16:29:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:29:10 --> Oh
+DEBUG - 2024-08-24 16:29:10 --> start session
+INFO - 2024-08-24 16:29:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:31:29 --> start session
+INFO - 2024-08-24 16:31:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:31:29 --> Oh
+DEBUG - 2024-08-24 16:31:29 --> start session
+INFO - 2024-08-24 16:31:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:32:11 --> start session
+INFO - 2024-08-24 16:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:32:11 --> Oh
+DEBUG - 2024-08-24 16:32:11 --> start session
+INFO - 2024-08-24 16:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:34:21 --> start session
+INFO - 2024-08-24 16:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:34:21 --> Oh
+DEBUG - 2024-08-24 16:34:21 --> start session
+INFO - 2024-08-24 16:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:34:57 --> start session
+INFO - 2024-08-24 16:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:34:57 --> Oh
+DEBUG - 2024-08-24 16:34:57 --> Oh
+DEBUG - 2024-08-24 16:34:57 --> Oh
+DEBUG - 2024-08-24 16:34:57 --> Oh
+DEBUG - 2024-08-24 16:34:57 --> Oh
+DEBUG - 2024-08-24 16:34:57 --> start session
+INFO - 2024-08-24 16:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:35:17 --> start session
+INFO - 2024-08-24 16:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:35:21 --> start session
+INFO - 2024-08-24 16:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:35:21 --> Oh
+DEBUG - 2024-08-24 16:35:21 --> Oh
+DEBUG - 2024-08-24 16:35:21 --> Oh
+DEBUG - 2024-08-24 16:35:21 --> Oh
+DEBUG - 2024-08-24 16:35:21 --> Oh
+DEBUG - 2024-08-24 16:35:21 --> start session
+INFO - 2024-08-24 16:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:35:32 --> start session
+INFO - 2024-08-24 16:35:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:35:32 --> Oh
+DEBUG - 2024-08-24 16:35:32 --> Oh
+DEBUG - 2024-08-24 16:35:32 --> Oh
+DEBUG - 2024-08-24 16:35:32 --> Oh
+DEBUG - 2024-08-24 16:35:32 --> Oh
+DEBUG - 2024-08-24 16:35:32 --> start session
+INFO - 2024-08-24 16:35:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:36:38 --> start session
+INFO - 2024-08-24 16:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:36:38 --> Oh
+DEBUG - 2024-08-24 16:36:38 --> Oh
+DEBUG - 2024-08-24 16:36:38 --> Oh
+DEBUG - 2024-08-24 16:36:38 --> Oh
+DEBUG - 2024-08-24 16:36:38 --> Oh
+DEBUG - 2024-08-24 16:36:38 --> start session
+INFO - 2024-08-24 16:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:10 --> start session
+INFO - 2024-08-24 16:37:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:10 --> Oh
+DEBUG - 2024-08-24 16:37:10 --> Oh
+DEBUG - 2024-08-24 16:37:10 --> Oh
+DEBUG - 2024-08-24 16:37:10 --> Oh
+DEBUG - 2024-08-24 16:37:10 --> Oh
+DEBUG - 2024-08-24 16:37:10 --> start session
+INFO - 2024-08-24 16:37:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:24 --> start session
+INFO - 2024-08-24 16:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:28 --> start session
+INFO - 2024-08-24 16:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:28 --> Oh
+DEBUG - 2024-08-24 16:37:28 --> Oh
+DEBUG - 2024-08-24 16:37:28 --> Oh
+DEBUG - 2024-08-24 16:37:28 --> Oh
+DEBUG - 2024-08-24 16:37:28 --> Oh
+DEBUG - 2024-08-24 16:37:28 --> start session
+INFO - 2024-08-24 16:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:41 --> start session
+INFO - 2024-08-24 16:37:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:44 --> start session
+INFO - 2024-08-24 16:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:37:44 --> Oh
+DEBUG - 2024-08-24 16:37:44 --> Oh
+DEBUG - 2024-08-24 16:37:44 --> Oh
+DEBUG - 2024-08-24 16:37:44 --> Oh
+DEBUG - 2024-08-24 16:37:44 --> Oh
+DEBUG - 2024-08-24 16:37:44 --> start session
+INFO - 2024-08-24 16:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:38:18 --> start session
+INFO - 2024-08-24 16:38:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:39:35 --> start session
+INFO - 2024-08-24 16:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:40:25 --> start session
+INFO - 2024-08-24 16:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:40:27 --> start session
+INFO - 2024-08-24 16:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:41:47 --> start session
+INFO - 2024-08-24 16:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:42:39 --> start session
+INFO - 2024-08-24 16:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:43:04 --> start session
+INFO - 2024-08-24 16:43:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:43:13 --> start session
+INFO - 2024-08-24 16:43:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:43:21 --> start session
+INFO - 2024-08-24 16:43:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:46:34 --> start session
+INFO - 2024-08-24 16:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:46:45 --> start session
+INFO - 2024-08-24 16:46:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:52:32 --> start session
+INFO - 2024-08-24 16:52:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:52:42 --> start session
+INFO - 2024-08-24 16:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:53:38 --> start session
+INFO - 2024-08-24 16:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:53:40 --> start session
+INFO - 2024-08-24 16:53:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:54:13 --> start session
+INFO - 2024-08-24 16:54:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:54:25 --> start session
+INFO - 2024-08-24 16:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:56:17 --> start session
+INFO - 2024-08-24 16:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:56:21 --> start session
+INFO - 2024-08-24 16:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:56:21 --> Oh
+DEBUG - 2024-08-24 16:56:21 --> Oh
+DEBUG - 2024-08-24 16:56:21 --> Oh
+DEBUG - 2024-08-24 16:56:21 --> Oh
+DEBUG - 2024-08-24 16:56:21 --> Oh
+DEBUG - 2024-08-24 16:56:21 --> start session
+INFO - 2024-08-24 16:56:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 16:59:39 --> start session
+INFO - 2024-08-24 16:59:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 17:01:12 --> start session
+INFO - 2024-08-24 17:01:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 17:01:12 --> Oh
+DEBUG - 2024-08-24 17:01:12 --> Oh
+DEBUG - 2024-08-24 17:01:12 --> Oh
+DEBUG - 2024-08-24 17:01:12 --> Oh
+DEBUG - 2024-08-24 17:01:12 --> Oh
+DEBUG - 2024-08-24 17:01:12 --> start session
+INFO - 2024-08-24 17:01:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 17:01:57 --> start session
+INFO - 2024-08-24 17:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-08-24 17:01:57 --> Oh
+DEBUG - 2024-08-24 17:01:57 --> Oh
+DEBUG - 2024-08-24 17:01:57 --> Oh
+DEBUG - 2024-08-24 17:01:57 --> Oh
+DEBUG - 2024-08-24 17:01:57 --> Oh
+DEBUG - 2024-08-24 17:01:57 --> start session
+INFO - 2024-08-24 17:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-24 17:04:18 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "@coreui"
+[Method: GET, Route: Admin/Dashboard/node_modules/@coreui/icons/sprites/free.svg]
+in SYSTEMPATH\Router\Router.php on line 737.
+ 1 SYSTEMPATH\Router\Router.php(204): CodeIgniter\Router\Router->checkDisallowedChars('Admin/Dashboard/node_modules/@coreui/icons/sprites/free.svg')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('Admin/Dashboard/node_modules/@coreui/icons/sprites/free.svg')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+CRITICAL - 2024-08-24 17:04:52 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "@coreui"
+[Method: GET, Route: node_modules/@coreui/icons/sprites/free.svg]
+in SYSTEMPATH\Router\Router.php on line 737.
+ 1 SYSTEMPATH\Router\Router.php(204): CodeIgniter\Router\Router->checkDisallowedChars('node_modules/@coreui/icons/sprites/free.svg')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('node_modules/@coreui/icons/sprites/free.svg')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+CRITICAL - 2024-08-24 17:05:47 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "@coreui"
+[Method: GET, Route: node_modules/@coreui/icons/sprites/free.svg]
+in SYSTEMPATH\Router\Router.php on line 737.
+ 1 SYSTEMPATH\Router\Router.php(204): CodeIgniter\Router\Router->checkDisallowedChars('node_modules/@coreui/icons/sprites/free.svg')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('node_modules/@coreui/icons/sprites/free.svg')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+CRITICAL - 2024-08-24 17:06:24 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "@coreui"
+[Method: GET, Route: node_modules/@coreui/icons/sprites/free.svg]
+in SYSTEMPATH\Router\Router.php on line 737.
+ 1 SYSTEMPATH\Router\Router.php(204): CodeIgniter\Router\Router->checkDisallowedChars('node_modules/@coreui/icons/sprites/free.svg')
+ 2 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('node_modules/@coreui/icons/sprites/free.svg')
+ 3 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\wamp64\\www\\codeigniter\\ci-base-template\\public\\index.php')
+DEBUG - 2024-08-24 17:07:57 --> start session
+INFO - 2024-08-24 17:07:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

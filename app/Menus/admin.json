@@ -1,0 +1,28 @@
+{
+  "accueil": {
+    "title": "Accueil",
+    "url": "/admin",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-house\"></i>",
+    "class": "main-menu-accueil"
+  },
+  "produits": {
+    "title": "Options",
+    "url": "/user",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-gear\"></i>",
+    "class": "",
+    "subs": {
+      "user": {
+        "title": "Utilisateur",
+        "url": "/admin/user",
+        "icon": "<i class=\"nav-icon fa-solid fa-users\"></i>"
+      },
+      "userpermission": {
+        "title": "Permissions",
+        "url": "/admin/userpermission",
+        "icon": "<i class=\"nav-icon fa-solid fa-user-gear\"></i>"
+      }
+    }
+  }
+}
