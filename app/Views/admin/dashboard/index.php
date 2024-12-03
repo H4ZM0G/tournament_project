@@ -1,3 +1,5 @@
+<!--/** page afficher quand on clique sur acceuil */-->
+
 Thème utilisé : CoreUi. <br>
 Framework CSS : <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank">Boostrap</a>.<br>
 Bibliothèque d'icones : <a href="https://fontawesome.com/search?m=free&o=r" target="_blank">FontAwesome</a>.<br>

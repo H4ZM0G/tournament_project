@@ -70,9 +70,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-1">
-                <a href="<?= base_url(); ?>"><img src="<?= base_url('/assets/brand/logo-bleu.svg'); ?>"></a>
+                <a href="<?= base_url(); ?>"><img src="<?= base_url('/assets/brand/PPTournamentSLAM.svg'); ?>"></a>
             </div>
         </div>
+        <br>
         <?php if (isset($error)) { ?>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
