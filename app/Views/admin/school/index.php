@@ -1,18 +1,18 @@
+<?php print_r("TEST") ?>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h4>Liste des écoles</h4>
-        <a href="<?= base_url('/admin/school/new'); ?>"><i class="fa-solid fa-school"></i></a>
+        <h4>Liste des Ecoles</h4>
+        <a href="<?= base_url('/admin/school/new'); ?>"><i class="fa-solid fa-user-plus"></i></a>
     </div>
     <div class="card-body">
-        <table id="tableUsers" class="table table-hover">
+        <table id="tableSchool" class="table table-hover">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Score</th>
+                <th>Nom</th>
+                <th>Ville</th>
                 <th>Modifier</th>
-                <th>Actif</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
 <script>
     $(document).ready(function () {
         var baseUrl = "<?= base_url(); ?>";
-        var dataTable = $('#tableUsers').DataTable({
+        var dataTable = $('#tableSchool').DataTable({
             "responsive": true,
             "processing": true,
             "serverSide": true,
@@ -34,41 +34,20 @@
                 url: baseUrl + 'js/datatable/datatable-2.1.4-fr-FR.json',
             },
             "ajax": {
-                "url": baseUrl + "admin/user/SearchUser",
+                "url": baseUrl + "admin/school/SearchSchool",
                 "type": "POST"
             },
             "columns": [
                 {"data": "id"},
-                {
-                    data : 'avatar_url',
-                    sortable : false,
-                    render : function(data) {
-                        if (data) {
-                            return `<img src="${baseUrl}${data}" alt="Avatar" style="max-width: 20px; height: auto;">`;
-                        } else {
-                            // Retourne une image par défaut si data est vide
-                            return '<img src="' + baseUrl + 'assets/img/avatars/1.jpg" alt="Default Avatar" style="max-width: 20px; height: auto;">';
-                        }
-                    }
-                },
-                {"data": "username"},
-                {"data": "email"},
-                {"data": "permission_name"},
+                {"data": "name"},
+                {"data": "city"},
                 {
                     data : 'id',
                     sortable : false,
                     render : function(data) {
-                        return `<a href="${baseUrl}admin/user/${data}"><i class="fa-solid fa-pencil"></i></a>`;
+                        return `<a href="${baseUrl}admin/school/${data}"><i class="fa-solid fa-pencil"></i></a>`;
                     }
                 },
-                {
-                    data : 'id',
-                    sortable : false,
-                    render : function(data, type, row) {
-                        return (row.deleted_at === null ?
-                            `<a title="Désactiver l'utilisateur" href="${baseUrl}admin/user/deactivate/${row.id}"><i class="fa-solid fa-xl fa-toggle-on text-success"></i></a>`: `<a title="Activer un utilisateur"href="${baseUrl}admin/user/activate/${row.id}"><i class="fa-solid fa-toggle-off fa-xl text-danger"></i></a>`);
-                    }
-                }
             ]
         });
     });
