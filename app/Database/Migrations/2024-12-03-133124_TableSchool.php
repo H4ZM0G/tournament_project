@@ -15,6 +15,10 @@ class TableSchool extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'id_category' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
+            ],
             'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -43,6 +47,7 @@ class TableSchool extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_category', 'school_category', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('school');
     }
 
