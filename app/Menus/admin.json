@@ -6,19 +6,27 @@
     "icon": "<i class=\"nav-icon fa-solid fa-house\"></i>",
     "class": "main-menu-accueil"
   },
-
-
   "game": {
-    "title": "Jeux disponibles",
+    "title": "Gestion des Jeux",
     "url": "/admin/game",
     "perm": "none",
-    "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>",
-    "class": "main-menu-accueil"
+    "icon": "<i class=\"nav-icon fa-solid fa-gear\"></i>",
+    "class": "main-menu-accueil",
+    "subs": {
+      "user": {
+        "title": "Catégories de Jeu",
+        "url": "/admin/Categorygame",
+        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
+      },
+      "userpermission": {
+        "title": "Jeux",
+        "url": "/admin/game",
+        "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>"
+      }
+    }
   },
-
-
   "tournament": {
-    "title": "Tournois",
+    "title": "Gestion des tournois",
     "url": "/admin/game",
     "perm": "none",
     "icon": "<i class=\"nav-icon fa-solid fa-trophy\"></i>",
@@ -35,9 +43,7 @@
         "icon": "<i class=\"nav-icon fa-solid fa-eye\"></i>"
       }
     }
-    },
-
-
+  },
   "produits": {
     "title": "Paramètre admin",
     "url": "/user",
@@ -55,12 +61,17 @@
         "url": "/admin/userpermission",
         "icon": "<i class=\"nav-icon fa-solid fa-user-gear\"></i>"
       },
+      "category": {
+        "title": "Catégorie",
+        "url": "/admin/categoryschool",
+        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
+      },
       "school": {
         "title": "École",
         "url": "/admin/school",
         "icon": "<i class=\"nav-icon fa-solid fa-school\"></i>"
-
       }
     }
   }
 }
+
