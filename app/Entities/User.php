@@ -45,6 +45,11 @@ class User extends Entity
         return $this->check('administrateur');
     }
 
+    public function isUser(): bool
+    {
+        return $this->check('utilisateur');
+    }
+
     // Méthode pour récupérer le niveau de permission
     public function getPermissions(): string
     {
