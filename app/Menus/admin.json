@@ -70,6 +70,11 @@
         "title": "Catégorie",
         "url": "/admin/categoryschool",
         "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
+      },
+      "school": {
+        "title": "École",
+        "url": "/admin/school",
+        "icon": "<i class=\"nav-icon fa-solid fa-school\"></i>"
       }
     }
   }

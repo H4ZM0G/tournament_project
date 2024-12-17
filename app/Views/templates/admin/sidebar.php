@@ -7,7 +7,7 @@
             <a href="<?= base_url('/admin'); ?>"><img src="<?= base_url('/assets/brand/PPTournamentSLAM.jpg'); ?>" class="sidebar-brand-narrow" _width="32"
                  height="32"
                  alt="Mon Projet" /></a>
-            Mon Projet
+              SLAM
         </div>
         <a href="<?= base_url(); ?>" target="_blank" class="header-toggler" alt="Voir le site" title="Voir le site"><i class="fa-solid fa-house-laptop"></i></a>
     </div>

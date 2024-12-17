@@ -9,6 +9,7 @@ class School extends BaseController
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
     protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des écoles', 'url' => '/admin/school']];
+
     protected $db;
 
     public function __construct()
@@ -57,7 +58,6 @@ class School extends BaseController
         $this->error("Action non reconnue");
         return $this->redirect("/admin/school");
     }
-
 
     public function postupdate() {
         // Récupération des données envoyées via POST
@@ -142,6 +142,4 @@ class School extends BaseController
         ];
         return $this->response->setJSON($result);
     }
-
-
 }

@@ -93,5 +93,4 @@ class CategorySchool extends BaseController
         ];
         return $this->response->setJSON($result);
     }
-
 }

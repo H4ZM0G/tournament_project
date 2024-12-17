@@ -26,6 +26,7 @@ class TableSchoolCategory extends Migration
 
         // Insérer les 3 permissions par défaut
         $data = [
+
             ['name' => 'Non Classée'],
             ['name' => 'Lycée'],
             ['name' => 'FAC'],
@@ -45,7 +46,6 @@ class TableSchoolCategory extends Migration
             END;
         ";
         $this->db->query($trigger_sql);
-
     }
 
 
