@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TableUser extends Migration
+class TableSchool extends Migration
 {
     public function up()
     {
@@ -15,45 +15,22 @@ class TableUser extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'username' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
+            'id_category' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
             ],
             'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'firstname' => [
+            'city' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
-            ],
-            'email' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-                'unique'     => true,
-            ],
-            'password' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
             ],
             'score' => [
                 'type'       => 'INT',
                 'unsigned'   => true,
                 'default'    => 0
-            ],
-            'bio' => [
-                'type'       => 'TEXT',
-                'null'       => true,
-            ],
-            'id_permission' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'unsigned'   => true,
-            ],
-            'id_school' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'unsigned'   => true,
             ],
             'created_at' => [
                 'type'       => 'DATETIME',
@@ -70,11 +47,12 @@ class TableUser extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('user');
+        $this->forge->addForeignKey('id_category', 'school_category', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('school');
     }
 
     public function down()
     {
-        $this->forge->dropTable('user');
+        $this->forge->dropTable('school');
     }
 }
