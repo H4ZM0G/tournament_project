@@ -7,11 +7,11 @@ class Home extends BaseController
     protected $require_auth = false;
     public function index(): string
     {
-        return view('welcome_message');
+        return view('/admin');
     }
 
     public function getforbidden() : string
     {
-        return view('/templates/forbidden');
+        return view('/user');
     }
 }

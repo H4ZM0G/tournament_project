@@ -71,6 +71,7 @@
     <!-- BOOTSTRAP BUNDLE -->
     <script src="<?= base_url('/js/bootstrap.bundle.min.js') ?>"></script>
 
+
 </head>
 <body>
 <?php if (isset($menus)) {
