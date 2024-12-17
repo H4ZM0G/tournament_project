@@ -41,20 +41,6 @@ class SchoolModel extends Model
         ],
     ];
 
-    // Callbacks pour le hachage du mot de passe
-    protected $beforeInsert = ['hashPassword'];
-    protected $beforeUpdate = ['hashPassword'];
-
-    protected function hashPassword(array $data)
-    {
-        if (!isset($data['data']['password'])) {
-            return $data;
-        }
-
-        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        return $data;
-    }
-
     // Relations avec les permissions
     public function getPermissions()
     {

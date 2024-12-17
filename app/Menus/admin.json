@@ -13,15 +13,15 @@
     "icon": "<i class=\"nav-icon fa-solid fa-gear\"></i>",
     "class": "main-menu-accueil",
     "subs": {
-      "user": {
-        "title": "Catégories de Jeu",
-        "url": "/admin/Categorygame",
-        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
-      },
-      "userpermission": {
+      "game": {
         "title": "Jeux",
         "url": "/admin/game",
         "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>"
+      },
+      "gamecategory": {
+        "title": "Catégories de Jeu",
+        "url": "/admin/CategoryGame",
+        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
       }
     }
   },
@@ -60,6 +60,11 @@
         "title": "Permissions",
         "url": "/admin/userpermission",
         "icon": "<i class=\"nav-icon fa-solid fa-user-gear\"></i>"
+      },
+      "school": {
+        "title": "École",
+        "url": "/admin/school",
+        "icon": "<i class=\"nav-icon fa-solid fa-school\"></i>"
       },
       "category": {
         "title": "Catégorie",

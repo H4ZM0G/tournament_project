@@ -70,7 +70,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-1">
-                <a href="<?= base_url(); ?>"><img src="<?= base_url('/assets/brand/PPTournamentSLAM.svg'); ?>"></a>
+                <a href="<?= base_url(); ?>">
+                <img src="<?= base_url('/assets/brand/PPTournamentSLAM.jpg'); ?>" class="img-fluid"></a>
             </div>
         </div>
         <br>

@@ -10,27 +10,53 @@ class School extends BaseController
     protected $requiredPermissions = ['administrateur'];
     protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des écoles', 'url' => '/admin/school']];
 
-    public function getindex($id = null) {
+    protected $db;
 
-        $sm = Model("SchoolModel");
-        if ($id == null) {
+    public function __construct()
+    {
+        // Initialisation de la base de données
+        $this->db = \Config\Database::connect();
+    }
 
-            return $this->view("/admin/school/index.php",[], true);
-        } else {
-            $permissions = Model("UserPermissionModel")->getAllPermissions();
-            if ($id == "new") {
-                $this->addBreadcrumb('Création d\' une école','');
-                return $this->view("/admin/school/school",["permissions" => $permissions], true);
+    public function getindex($action = null, $id = null)
+    {
+        $sm = model("SchoolModel");
+        $categories = $this->db->table('school_category')->select('id, name')->get()->getResultArray();
+        $categoryNames = [];
+        foreach ($categories as $category) {
+            $categoryNames[$category['id']] = $category['name'];
+        }
+
+
+        if ($action == null && $id == null) {
+            // Récupérer tous les jeux
+            $schools = $sm->withDeleted()->findAll();
+
+            // Associer le nom de la catégorie à chaque jeu
+            foreach ($schools as &$school) {
+                $school['category_name'] = isset($categoryNames[$school['id_category']]) ? $categoryNames[$school['id_category']] : 'Inconnue';
             }
-            $ecole = $sm->getUserById($id);
+
+            return $this->view("/admin/school/index", ['schools' => $schools], true);
+        }
+
+        $categories = $this->db->table('school_category')->select('id, name')->get()->getResultArray();
+        if ($action == "new") {
+            $this->addBreadcrumb('Création d\'un jeu', '');
+            return $this->view("/admin/school/school", ['categories' => $categories], true);
+        }
+        if ($action == "edit" && $id != null) {
+            $ecole = $sm->find($id);
             if ($ecole) {
                 $this->addBreadcrumb('Modification de ' . $ecole['name'], '');
-                return $this->view("/admin/school/school", ["utilisateur" => $ecole, "permissions" => $permissions ], true);
+                return $this->view("/admin/school/school", ["ecole" => $ecole, "categories" => $categories], true);
             } else {
-                $this->error("L'ID de l'école n'existe pas");
-                $this->redirect("/admin/school");
+                $this->error("L'ID du jeu n'existe pas");
+                return $this->redirect("/admin/school");
             }
         }
+        $this->error("Action non reconnue");
+        return $this->redirect("/admin/school");
     }
 
     public function postupdate() {

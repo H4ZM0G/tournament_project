@@ -26,6 +26,8 @@ class TableSchoolCategory extends Migration
 
         // Insérer les 3 permissions par défaut
         $data = [
+
+            ['name' => 'Non Classée'],
             ['name' => 'Lycée'],
             ['name' => 'FAC'],
             ['name' => 'CFA'],
@@ -33,6 +35,17 @@ class TableSchoolCategory extends Migration
         ];
         $this->db->table('school_category')->insertBatch($data);
 
+        $trigger_sql = "
+            CREATE TRIGGER prevent_delete_initial_school_category
+            BEFORE DELETE ON school_category
+            FOR EACH ROW
+            BEGIN
+                IF OLD.id = 1 THEN
+                    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La suppression de la categorie \"Non classé\" est interdite.';
+                END IF;
+            END;
+        ";
+        $this->db->query($trigger_sql);
     }
 
 
