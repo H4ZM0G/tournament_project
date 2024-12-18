@@ -10,7 +10,7 @@ class SchoolModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['name', 'city', 'score','created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['name', 'id_category', 'city', 'score','created_at', 'updated_at', 'deleted_at'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
