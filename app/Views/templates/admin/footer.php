@@ -1,5 +1,5 @@
 </div>
-<footer class="footer px-4 mt-4">
+<footer class="footer mt-5">
     <div></div>
 </footer>
 </div>

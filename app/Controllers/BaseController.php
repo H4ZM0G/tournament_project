@@ -203,7 +203,7 @@ abstract class BaseController extends Controller
         if (isset($this->session->user)) {
             if (!in_array($this->session->user->getPermissionSlug(), $this->requiredPermissions)) {
                 $this->session->set('redirect_url', current_url(true)->getPath());
-                $this->redirect('/forbidden');
+                $this->redirect('/user');
             }
             return false;
         }

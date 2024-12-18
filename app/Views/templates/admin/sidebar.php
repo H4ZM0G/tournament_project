@@ -9,7 +9,6 @@
                  alt="Mon Projet" /></a>
               SLAM
         </div>
-        <a href="<?= base_url(); ?>" target="_blank" class="header-toggler" alt="Voir le site" title="Voir le site"><i class="fa-solid fa-house-laptop"></i></a>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <?php

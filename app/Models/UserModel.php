@@ -24,9 +24,10 @@ class UserModel extends Model
     // Validation
     protected $validationRules = [
         'username' => 'required|is_unique[user.username,id,{id}]|min_length[3]|max_length[100]',
-        'name' => 'required|min_length[0]|max_length[100]',
-        'firstname' => 'required|min_length[0]|max_length[100]',
-        'bio' => 'min_length[0]|max_length[500]',
+
+//        'name' => 'required|min_length[0]|max_length[100]',
+//        'firstname' => 'required|min_length[0]|max_length[100]',
+//        'bio' => 'min_length[0]|max_length[500]',
         'email'    => 'required|valid_email|is_unique[user.email,id,{id}]',
         'password' => 'required|min_length[8]',
         'id_permission' => 'required|is_natural_no_zero',
@@ -39,22 +40,24 @@ class UserModel extends Model
             'max_length' => 'Le nom d\'utilisateur ne doit pas dépasser 100 caractères.',
             'is_unique'   => 'Ce nom d\'utilisateur est déja utilisé.',
         ],
-        'name' => [
-            'required'   => 'Le nom est requis.',
-            'min_length' => 'Le nom doit comporter au moins 0 caractères.',
-            'max_length' => 'Le nom ne doit pas dépasser 100 caractères.',
 
-        ],
-        'firstname' => [
-            'required'   => 'Le prénom est requis.',
-            'min_length' => 'Le prénom doit comporter au moins 0 caractères.',
-            'max_length' => 'Le prénom ne doit pas dépasser 100 caractères.',
+//        'name' => [
+//            'required'   => 'Le nom est requis.',
+//            'min_length' => 'Le nom doit comporter au moins 0 caractères.',
+//            'max_length' => 'Le nom ne doit pas dépasser 100 caractères.',
+//
+//        ],
+//        'firstname' => [
+//            'required'   => 'Le prénom est requis.',
+//            'min_length' => 'Le prénom doit comporter au moins 0 caractères.',
+//            'max_length' => 'Le prénom ne doit pas dépasser 100 caractères.',
+//
+//        ],
+//        'bio' => [
+//            'max_length' => 'La biographie ne doit pas dépasser 500 caractères.',
+//
+//        ],
 
-        ],
-        'bio' => [
-            'max_length' => 'La biographie ne doit pas dépasser 500 caractères.',
-
-        ],
         'email' => [
             'required'   => 'L\'email est requis.',
             'valid_email' => 'L\'email doit être valide.',

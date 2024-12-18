@@ -27,7 +27,7 @@ class Login extends BaseController
                 return view('/login/login');
             }
             $this->session->set('user', $user);
-            return $this->redirect('/');
+            return $this->redirect('/admin');
         } else {
             // Gérer l'échec de l'authentification
             return view('/login/login');
