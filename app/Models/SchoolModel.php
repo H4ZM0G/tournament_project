@@ -64,7 +64,9 @@ class SchoolModel extends Model
     }
     public function updateSchool($id, $data)
     {
-        return $this->update($data);
+        $builder = $this->builder();
+        $builder->where('id', $id);
+        return $builder->update($data);
     }
     public function deleteSchool($id)
     {

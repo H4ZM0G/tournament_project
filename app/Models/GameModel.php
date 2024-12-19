@@ -48,7 +48,7 @@ class GameModel extends Model
 
     public function getGameById($id)
     {
-        $this->select('game.*, media.file_path as avatargame_url');
+        $this->select('game.*, media.file_path as avatar_url');
         $this->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
         return $this->find($id);
     }
@@ -56,6 +56,13 @@ class GameModel extends Model
     public function createGame($data)
     {
         return $this->insert($data);
+    }
+
+    public function activateGame($id) {
+        $builder = $this->builder();
+        $builder->set('deleted_at', NULL);
+        $builder->where('id', $id);
+        return $builder->update();
     }
 
     public function updateGame($id, $data)
@@ -79,7 +86,7 @@ class GameModel extends Model
     {
         $builder = $this->builder();
         $builder->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
-        $builder->select('game.*, media.file_path as avatargame_url');
+        $builder->select('game.*, media.file_path as avatar_url');
 
         // Recherche
         if ($searchValue != null) {
@@ -105,7 +112,7 @@ class GameModel extends Model
     {
         $builder = $this->builder();
         $builder->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
-        $builder->select('game.*,  media.file_path as avatargame_url');
+        $builder->select('game.*,  media.file_path as avatar_url');
 
         if (!empty($searchValue)) {
             $builder->like('name', $searchValue);
