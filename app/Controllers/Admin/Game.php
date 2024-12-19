@@ -3,24 +3,21 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
-
 class Game extends BaseController
 {
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
-    protected $breadcrumb =  [['text' => 'Tableau de Bord', 'url' => '/admin/dashboard'], ['text'=> 'Gestion des jeux', 'url' => '/admin/game']];
-    protected $db; // Ajout de la propriété $db
-
+    protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des utilisateurs', 'url' => '/admin/game']];
+    protected $db;
     public function __construct()
     {
         // Initialisation de la base de données
         $this->db = \Config\Database::connect();
     }
+
     public function getindex($action = null, $id = null)
     {
         $gm = model("GameModel");
-
         $categories = $this->db->table('game_category')->select('id, name')->get()->getResultArray();
         $categoryNames = [];
         foreach ($categories as $category) {
@@ -61,36 +58,85 @@ class Game extends BaseController
 
     public function postcreate() {
         $data = $this->request->getPost();
-        $gm = model("GameModel");
+        $gm = Model("GameModel");
 
-        $newGameId = $gm->insert($data);
+        // Créer l'utilisateur et obtenir son ID
+        $newGameId = $gm->createGame($data);
 
+        // Vérifier si la création a réussi
         if ($newGameId) {
-            $this->success("Le jeu a bien été ajoutée.");
-            return $this->redirect("/admin/game");
+            // Vérifier si des fichiers ont été soumis dans le formulaire
+            $file = $this->request->getFile('profile_image'); // 'profile_image' est le nom du champ dans le formulaire
+            if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
+                // Préparer les données du média
+                $mediaData = [
+                    'entity_type' => 'game',
+                    'entity_id'   => $newGameId,   // Utiliser le nouvel ID de l'utilisateur
+                ];
+
+                // Utiliser la fonction upload_file() pour gérer l'upload et les données du média
+                $uploadResult = upload_file($file, 'avatar', $data['name'], $mediaData);
+
+                // Vérifier le résultat de l'upload
+                if (is_array($uploadResult) && $uploadResult['status'] === 'error') {
+                    // Afficher un message d'erreur détaillé et rediriger
+                    $this->error("Une erreur est survenue lors de l'upload de l'image : " . $uploadResult['message']);
+                    return $this->redirect("/admin/game/new");
+                }
+            }
+            $this->success("Le jeu à bien été ajouté.");
+            $this->redirect("/admin/game");
         } else {
             $errors = $gm->errors();
             foreach ($errors as $error) {
                 $this->error($error);
             }
-            return $this->redirect("/admin/game/new");
+            $this->redirect("/admin/game/new");
         }
     }
 
     public function postupdate() {
+        // Récupération des données envoyées via POST
         $data = $this->request->getPost();
-        $gm = model("GameModel");
 
+        // Récupération du modèle GameModel
+        $gm = Model("GameModel");
+
+        // Vérifier si un fichier a été soumis dans le formulaire
         $file = $this->request->getFile('profile_image'); // 'profile_image' est le nom du champ dans le formulaire
+        // Si un fichier a été soumis
+        if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
+            // Récupération du modèle MediaModel
+            $mm = Model('MediaModel');
+            // Récupérer l'ancien média avant l'upload
+            $old_media = $mm->getMediaByEntityIdAndType($data['id'], 'game');
 
-        $jeu = $gm->find($data['id']);
-        if (!$jeu) {
-            $this->error("Le jeu n'existe pas.");
-            return $this->redirect("/admin/game");
+            // Préparer les données du média pour le nouvel upload
+            $mediaData = [
+                'entity_type' => 'game',
+                'entity_id'   => $data['id'],   // Utiliser l'ID de l'utilisateur
+            ];
+
+            // Utiliser la fonction upload_file() pour gérer l'upload et enregistrer les données du média
+            $uploadResult = upload_file($file, 'avatar', $data['name'], $mediaData, true, ['image/jpeg', 'image/png','image/jpg']);
+
+            // Vérifier le résultat de l'upload
+            if (is_array($uploadResult) && $uploadResult['status'] === 'error') {
+                // Afficher un message d'erreur détaillé et rediriger
+                $this->error("Une erreur est survenue lors de l'upload de l'image : " . $uploadResult['message']);
+                return $this->redirect("/admin/game");
+            }
+
+            // Si l'upload est un succès, suppression de l'ancien média
+            if ($old_media) {
+                $mm->deleteMedia($old_media[0]['id']);
+            }
         }
 
-        if ($gm->update($data['id'], $data)) {
-            $this->success("Le jeu a bien été modifiée.");
+        // Mise à jour des informations utilisateur dans la base de données
+        if ($gm->updateGame($data['id'], $data)) {
+            // Si la mise à jour réussit
+            $this->success("Le jeu a bien été modifié.");
         } else {
             $errors = $gm->errors();
             foreach ($errors as $error) {
@@ -98,55 +144,38 @@ class Game extends BaseController
             }
         }
 
+        // Redirection vers la page des utilisateurs après le traitement
         return $this->redirect("/admin/game");
     }
 
-    public function getdeactivate($id)
-    {
-        $gm = model('GameModel');
-
-        try {
-            if ($gm->update($id, ['deleted_at' => date('Y-m-d H:i:s')])) {
-                $this->success("Jeu désactivé");
-            } else {
-                $this->error("Jeu non désactivé");
-            }
-        } catch (\Exception $e) {
-            $this->error("Erreur : " . $e->getMessage());
+    public function getdeactivate($id){
+        $gm = Model('GameModel');
+        if ($gm->deleteGame($id)) {
+            $this->success("Jeu désactivé");
+        } else {
+            $this->error("Jeu non désactivé");
         }
-
-        return $this->redirect('/admin/game');
+        $this->redirect('/admin/game');
     }
 
-    public function getactivate($id)
-    {
-        $gm = model('GameModel');
-
-        try {
-            if ($gm->update($id, ['deleted_at' => null])) {
-                $this->success("Jeu activé");
-            } else {
-                $this->error("Jeu non activé");
-            }
-        } catch (\Exception $e) {
-            $this->error("Erreur : " . $e->getMessage());
+    public function getactivate($id){
+        $gm = Model('GameModel');
+        if ($gm->activateGame($id)) {
+            $this->success("Jeu activé");
+        } else {
+            $this->error("Jeu non activé");
         }
-
-        return $this->redirect('/admin/game');
+        $this->redirect('/admin/game');
     }
 
-
-    public function new()
-    {
-        $categories = $this->db->table('game_category')->select('id, name')->get()->getResultArray();
-
-        return view('admin/game_form', [
-            'categories' => $categories,
-        ]);
-    }
+    /**
+     * Renvoie pour la requete Ajax les stocks fournisseurs rechercher par SKU ( LIKE )
+     *
+     * @return \CodeIgniter\HTTP\ResponseInterface
+     */
     public function postSearchGame()
     {
-        $GameModel = model('App\Models\GmeModel');
+        $GameModel = model('App\Models\GameModel');
 
         // Paramètres de pagination et de recherche envoyés par DataTables
         $draw        = $this->request->getPost('draw');
@@ -161,13 +190,13 @@ class Game extends BaseController
 
 
         // Obtenez les données triées et filtrées
-        $data = $GameModel->getPaginatedGame($start, $length, $searchValue, $orderColumnName, $orderDirection);
+        $data = $GameModel->getPaginatedGames($start, $length, $searchValue, $orderColumnName, $orderDirection);
 
         // Obtenez le nombre total de lignes sans filtre
-        $totalRecords = $GameModel->getTotalGame();
+        $totalRecords = $GameModel->getTotalGames();
 
         // Obtenez le nombre total de lignes filtrées pour la recherche
-        $filteredRecords = $GameModel->getFilteredGame($searchValue);
+        $filteredRecords = $GameModel->getFilteredGames($searchValue);
 
         $result = [
             'draw'            => $draw,

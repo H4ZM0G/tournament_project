@@ -29,10 +29,10 @@ class School extends BaseController
 
 
         if ($action == null && $id == null) {
-            // Récupérer tous les jeux
+            // Récupérer tous les ecoles
             $schools = $sm->withDeleted()->findAll();
 
-            // Associer le nom de la catégorie à chaque jeu
+            // Associer le nom de la catégorie à chaque ecole
             foreach ($schools as &$school) {
                 $school['category_name'] = isset($categoryNames[$school['id_category']]) ? $categoryNames[$school['id_category']] : 'Inconnue';
             }
@@ -42,7 +42,7 @@ class School extends BaseController
 
         $categories = $this->db->table('school_category')->select('id, name')->get()->getResultArray();
         if ($action == "new") {
-            $this->addBreadcrumb('Création d\'un jeu', '');
+            $this->addBreadcrumb('Création d\'un ecole', '');
             return $this->view("/admin/school/school", ['categories' => $categories], true);
         }
         if ($action == "edit" && $id != null) {
@@ -51,7 +51,7 @@ class School extends BaseController
                 $this->addBreadcrumb('Modification de ' . $ecole['name'], '');
                 return $this->view("/admin/school/school", ["ecole" => $ecole, "categories" => $categories], true);
             } else {
-                $this->error("L'ID du jeu n'existe pas");
+                $this->error("L'ID de l'ecole n'existe pas");
                 return $this->redirect("/admin/school");
             }
         }
@@ -60,16 +60,18 @@ class School extends BaseController
     }
 
     public function postupdate() {
-        // Récupération des données envoyées via POST
         $data = $this->request->getPost();
+        $sm = model("SchoolModel");
 
-        // Récupération du modèle UserModel
-        $sm = Model("SchoolModel");
 
-        // Mise à jour des informations utilisateur dans la base de données
-        if ($sm->updateSchool($data['id'], $data)) {
-            // Si la mise à jour réussit
-            $this->success("L'école a bien été modifié.");
+        $ecole = $sm->find($data['id']);
+        if (!$ecole) {
+            $this->error("L'école 'n'existe pas.");
+            return $this->redirect("/admin/school");
+        }
+
+        if ($sm->update($data['id'], $data)) {
+            $this->success("L'école a bien été modifiée.");
         } else {
             $errors = $sm->errors();
             foreach ($errors as $error) {
@@ -77,7 +79,6 @@ class School extends BaseController
             }
         }
 
-        // Redirection vers la page des utilisateurs après le traitement
         return $this->redirect("/admin/school");
     }
 

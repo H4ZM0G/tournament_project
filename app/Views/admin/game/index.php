@@ -38,7 +38,7 @@
             "columns": [
                 {"data": "id"},
                 {
-                    data : 'avatargame_url',
+                    data : 'avatar_url',
                     sortable : false,
                     render : function(data) {
                         if (data) {

@@ -13,7 +13,7 @@
                         </a>
                         <?php
                     } elseif (isset($jeu)) { ?>
-                        <a title="Activer lécole" href="<?= base_url('admin/school/activate/') . $jeu['id']; ?>">
+                        <a title="Activer lécole" href="<?= base_url('admin/school/activate/') . $ecole['id']; ?>">
                             <i class="fa-solid fa-toggle-off fa-xl text-danger"></i>
                         </a>
                         <?php

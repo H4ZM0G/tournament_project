@@ -54,10 +54,10 @@
                                 <label for="image" class="form-label me-2">AvatarGame</label>
                                 <div id="preview">
                                     <?php
-                                    $profileImageUrl = isset($jeu['avatargame_url']) ? base_url($jeu['avatargame_url']) : "#";
+                                    $profileImageUrl = isset($jeu['avatar_url']) ? base_url($jeu['avatar_url']) : "#";
                                     ?>
                                     <img class="img-thumbnail me-2"alt="Aperçu de l'image"
-                                         style="display: <?= isset($jeu['avatargame_url']) ? "block" : "none" ?>; max-width: 100px;"
+                                         style="display: <?= isset($jeu['avatar_url']) ? "block" : "none" ?>; max-width: 100px;"
                                          src="<?= $profileImageUrl ?>">
                                 </div>
 
