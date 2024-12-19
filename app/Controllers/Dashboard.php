@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Controllers\User;
-
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
 class Dashboard extends BaseController
 {
@@ -10,7 +8,7 @@ class Dashboard extends BaseController
 protected $require_auth = true;
     public function getIndex(): string
     {
-        return $this->view('/user/dashboard/index.php', [], true);
+        return $this->view('/front/dashboard/index.php', [], true);
     }
 
     public function getTest() {
@@ -19,6 +17,6 @@ protected $require_auth = true;
         $this->success("Oh");
         $this->warning("Oh");
         $this->error("Oh");
-        $this->redirect("/User/Dashboard");
+        $this->redirect("/Dashboard");
     }
 }

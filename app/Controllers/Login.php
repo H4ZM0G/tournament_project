@@ -18,23 +18,38 @@ class Login extends BaseController
         // Traitement de la connexion
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+
         // Logique de vérification des informations d'identification
         $um = Model('UserModel');
-        $user = $um->verifyLogin($email,$password);
+        $user = $um->verifyLogin($email, $password);
+
         if ($user) {
             $user = new User($user);
-            if (!$user->isActive()){
+
+            // Vérifie si l'utilisateur est actif
+            if (!$user->isActive()) {
                 return view('/login/login');
             }
+
+            // Enregistre l'utilisateur dans la session
             $this->session->set('user', $user);
-            return $this->redirect('/admin');
+
+            // Redirige selon les permissions de l'utilisateur
+            if ($user->getPermissionSlug() === 'administrateur') {
+                return $this->redirect('/admin');
+            } else {
+                return $this->redirect('/Dashboard');
+            }
         } else {
             // Gérer l'échec de l'authentification
             return view('/login/login');
         }
     }
 
-    public function getregister() {
+
+
+    public function getregister()
+    {
         $flashData = session()->getFlashdata('data');
 
         // Préparer les données à passer à la vue
@@ -42,10 +57,11 @@ class Login extends BaseController
             'errors' => $flashData['errors'] ?? null,
             // Autres données à passer à la vue
         ];
-        return view('/login/register',$data);
+        return view('/login/register', $data);
     }
 
-    public function postregister() {
+    public function postregister()
+    {
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $username = $this->request->getPost('username');
@@ -59,7 +75,8 @@ class Login extends BaseController
         return $this->redirect("/login");
     }
 
-    public function getlogout() {
+    public function getlogout()
+    {
         $this->logout();
         return $this->redirect("/login");
     }

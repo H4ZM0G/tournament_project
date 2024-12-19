@@ -134,15 +134,16 @@ abstract class BaseController extends Controller
      * @param bool $admin Indique si l'utilisateur est un administrateur.
      * @return array Liste des menus.
      */
-    protected function menus($admin)
-    {
-        if (!$this->menus) {
-            $file = $admin ? 'admin.json' : 'front.json';
-            $this->menus = json_decode(file_get_contents(APPPATH . 'Menus/' . $file), true);
-        }
-
-        return $this->menus;
-    }
+   protected function menus($admin = false){
+       if (!$this->menus) {
+           if (isset($this->session->user) && $this->session->user->getPermissionSlug() === 'administrateur') {
+               $file = 'admin.json';
+           } else {
+               $file = 'front.json';
+           }
+           $this->menus = json_decode(file_get_contents(APPPATH . 'Menus/' . $file), true);
+       } return $this->menus;
+   }
 
     /**
      * Initialise le contrôleur avec les services de base.
@@ -203,7 +204,7 @@ abstract class BaseController extends Controller
         if (isset($this->session->user)) {
             if (!in_array($this->session->user->getPermissionSlug(), $this->requiredPermissions)) {
                 $this->session->set('redirect_url', current_url(true)->getPath());
-                $this->redirect('/user');
+                $this->redirect('/Profil');
             }
             return false;
         }

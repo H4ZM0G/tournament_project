@@ -44,7 +44,7 @@
       }
     }
   },
-  "produits": {
+  "paramAdmin": {
     "title": "Paramètre admin",
     "url": "/user",
     "perm": "none",
