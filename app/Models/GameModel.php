@@ -48,6 +48,8 @@ class GameModel extends Model
 
     public function getGameById($id)
     {
+        $this->select('game.*, media.file_path as avatargame_url');
+        $this->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
         return $this->find($id);
     }
 
@@ -76,7 +78,8 @@ class GameModel extends Model
     public function getPaginatedGames($start, $length, $searchValue, $orderColumnName, $orderDirection)
     {
         $builder = $this->builder();
-        $builder->select('*');
+        $builder->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
+        $builder->select('game.*, media.file_path as avatargame_url');
 
         // Recherche
         if ($searchValue != null) {
@@ -101,7 +104,8 @@ class GameModel extends Model
     public function getFilteredGames($searchValue)
     {
         $builder = $this->builder();
-        $builder->select('*');
+        $builder->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
+        $builder->select('game.*,  media.file_path as avatargame_url');
 
         if (!empty($searchValue)) {
             $builder->like('name', $searchValue);

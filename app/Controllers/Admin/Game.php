@@ -81,6 +81,7 @@ class Game extends BaseController
         $data = $this->request->getPost();
         $gm = model("GameModel");
 
+        $file = $this->request->getFile('profile_image'); // 'profile_image' est le nom du champ dans le formulaire
 
         $jeu = $gm->find($data['id']);
         if (!$jeu) {
@@ -142,5 +143,38 @@ class Game extends BaseController
         return view('admin/game_form', [
             'categories' => $categories,
         ]);
+    }
+    public function postSearchGame()
+    {
+        $GameModel = model('App\Models\GmeModel');
+
+        // Paramètres de pagination et de recherche envoyés par DataTables
+        $draw        = $this->request->getPost('draw');
+        $start       = $this->request->getPost('start');
+        $length      = $this->request->getPost('length');
+        $searchValue = $this->request->getPost('search')['value'];
+
+        // Obtenez les informations sur le tri envoyées par DataTables
+        $orderColumnIndex = $this->request->getPost('order')[0]['column'] ?? 0;
+        $orderDirection = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+        $orderColumnName = $this->request->getPost('columns')[$orderColumnIndex]['data'] ?? 'id';
+
+
+        // Obtenez les données triées et filtrées
+        $data = $GameModel->getPaginatedGame($start, $length, $searchValue, $orderColumnName, $orderDirection);
+
+        // Obtenez le nombre total de lignes sans filtre
+        $totalRecords = $GameModel->getTotalGame();
+
+        // Obtenez le nombre total de lignes filtrées pour la recherche
+        $filteredRecords = $GameModel->getFilteredGame($searchValue);
+
+        $result = [
+            'draw'            => $draw,
+            'recordsTotal'    => $totalRecords,
+            'recordsFiltered' => $filteredRecords,
+            'data'            => $data,
+        ];
+        return $this->response->setJSON($result);
     }
 }
