@@ -7,7 +7,7 @@ class Game extends BaseController
 {
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
-    protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des utilisateurs', 'url' => '/admin/game']];
+    protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des jeux', 'url' => '/admin/game']];
     protected $db;
     public function __construct()
     {
