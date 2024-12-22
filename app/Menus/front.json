@@ -1,0 +1,16 @@
+{
+  "accueil": {
+    "title": "Accueil",
+    "url": "/Dashboard",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-house\"></i>",
+    "class": "main-menu-accueil"
+  },
+  "game": {
+    "title": "Les jeux disponibles",
+    "url": "/Game",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>",
+    "class": "main-menu-accueil"
+  }
+}

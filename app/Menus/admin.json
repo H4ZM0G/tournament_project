@@ -1,0 +1,76 @@
+{
+  "accueil": {
+    "title": "Accueil",
+    "url": "/admin",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-house\"></i>",
+    "class": "main-menu-accueil"
+  },
+  "game": {
+    "title": "Gestion des Jeux",
+    "url": "/admin/game",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-gear\"></i>",
+    "class": "main-menu-accueil",
+    "subs": {
+      "game": {
+        "title": "Jeux",
+        "url": "/admin/game",
+        "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>"
+      },
+      "gamecategory": {
+        "title": "Catégories de Jeu",
+        "url": "/admin/CategoryGame",
+        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
+      }
+    }
+  },
+  "tournament": {
+    "title": "Gestion des tournois",
+    "url": "/admin/game",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-trophy\"></i>",
+    "class": "",
+    "subs": {
+      "user": {
+        "title": "S'inscrire",
+        "url": "/admin/user",
+        "icon": "<i class=\"nav-icon fa-solid fa-envelope\"></i>"
+      },
+      "userpermission": {
+        "title": "Regarder",
+        "url": "/admin/userpermission",
+        "icon": "<i class=\"nav-icon fa-solid fa-eye\"></i>"
+      }
+    }
+  },
+  "paramAdmin": {
+    "title": "Paramètre admin",
+    "url": "/user",
+    "perm": "none",
+    "icon": "<i class=\"nav-icon fa-solid fa-gear\"></i>",
+    "class": "",
+    "subs": {
+      "user": {
+        "title": "Utilisateur",
+        "url": "/admin/user",
+        "icon": "<i class=\"nav-icon fa-solid fa-users\"></i>"
+      },
+      "userpermission": {
+        "title": "Permissions",
+        "url": "/admin/userpermission",
+        "icon": "<i class=\"nav-icon fa-solid fa-user-gear\"></i>"
+      },
+      "school": {
+        "title": "École",
+        "url": "/admin/school",
+        "icon": "<i class=\"nav-icon fa-solid fa-school\"></i>"
+      },
+      "category": {
+        "title": "Catégorie",
+        "url": "/admin/categoryschool",
+        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
+      }
+    }
+  }
+}
