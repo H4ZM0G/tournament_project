@@ -109,4 +109,10 @@ class SchoolModel extends Model
 
         return $builder->countAllResults();
     }
+    public function activateSchool($id) {
+        $builder = $this->builder();
+        $builder->set('deleted_at', NULL);
+        $builder->where('id', $id);
+        return $builder->update();
+    }
 }
