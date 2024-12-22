@@ -60,18 +60,15 @@ class School extends BaseController
     }
 
     public function postupdate() {
+        // Récupération des données envoyées via POST
         $data = $this->request->getPost();
-        $sm = model("SchoolModel");
 
-
-        $ecole = $sm->find($data['id']);
-        if (!$ecole) {
-            $this->error("L'école 'n'existe pas.");
-            return $this->redirect("/admin/school");
-        }
-
-        if ($sm->update($data['id'], $data)) {
-            $this->success("L'école a bien été modifiée.");
+        // Récupération du modèle GameModel
+        $sm = Model("SchoolModel");
+        // Mise à jour des informations utilisateur dans la base de données
+        if ($sm->updateSchool($data['id'], $data)) {
+            // Si la mise à jour réussit
+            $this->success("Le jeu a bien été modifié.");
         } else {
             $errors = $sm->errors();
             foreach ($errors as $error) {
@@ -79,10 +76,29 @@ class School extends BaseController
             }
         }
 
+        // Redirection vers la page des utilisateurs après le traitement
         return $this->redirect("/admin/school");
     }
 
+    public function getdeactivate($id){
+        $sm = Model('SchoolModel');
+        if ($sm->deleteSchool($id)) {
+            $this->success("Jeu désactivé");
+        } else {
+            $this->error("Jeu non désactivé");
+        }
+        $this->redirect('/admin/school');
+    }
 
+    public function getactivate($id){
+        $sm = Model('SchoolModel');
+        if ($sm->activateSchool($id)) {
+            $this->success("Jeu activé");
+        } else {
+            $this->error("Jeu non activé");
+        }
+        $this->redirect('/admin/school');
+    }
 
     public function postcreate() {
         $data = $this->request->getPost();
