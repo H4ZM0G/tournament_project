@@ -55,7 +55,7 @@
                     data : 'id',
                     sortable : false,
                     render : function(data) {
-                        return `<a href="${baseUrl}admin/game/${data}"><i class="fa-solid fa-pencil"></i></a>`;
+                        return `<a href="${baseUrl}admin/game/edit/${data}"><i class="fa-solid fa-pencil"></i></a>`;
                     }
                 },
                 {
