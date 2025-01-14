@@ -23,6 +23,8 @@ class TableGameCategory extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->createTable('game_category');
+
+
     }
 
     public function down()

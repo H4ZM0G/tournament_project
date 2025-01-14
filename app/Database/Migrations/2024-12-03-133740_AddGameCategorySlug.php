@@ -21,6 +21,22 @@ class AddGameCategorySlug extends Migration
             ],
         ]);
         $this->updateSlugs('game_category');
+
+        $this->db->table('game_category')->insert(['name' => 'Non classé', 'slug' => 'non-classe']);
+        $this->db->table('game_category')->insert(['name' => 'FPS', 'slug' => 'fps']);
+        $this->db->table('game_category')->insert(['name' => 'MMO', 'slug' => 'mmo']);
+
+        $trigger_sql = "
+            CREATE TRIGGER prevent_delete_initial_game_category
+            BEFORE DELETE ON game_category
+            FOR EACH ROW
+            BEGIN
+                IF OLD.id = 1 THEN
+                    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La suppression de la category \"Non classé\" est interdite.';
+                END IF;
+            END;
+        ";
+        $this->db->query($trigger_sql);
     }
 
     public function down()

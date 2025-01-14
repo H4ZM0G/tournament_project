@@ -33,13 +33,13 @@
     "class": "",
     "subs": {
       "user": {
-        "title": "S'inscrire",
-        "url": "/admin/user",
+        "title": "Créer un tournois",
+        "url": "/admin/tournament",
         "icon": "<i class=\"nav-icon fa-solid fa-envelope\"></i>"
       },
-      "userpermission": {
-        "title": "Regarder",
-        "url": "/admin/userpermission",
+      "participant": {
+        "title": "Participant",
+        "url": "/admin/participant",
         "icon": "<i class=\"nav-icon fa-solid fa-eye\"></i>"
       }
     }
