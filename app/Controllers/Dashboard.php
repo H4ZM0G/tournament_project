@@ -8,7 +8,7 @@ class Dashboard extends BaseController
 protected $require_auth = true;
     public function getIndex(): string
     {
-        return $this->view('/front/dashboard/index.php', [], true);
+        return $this->view('/front/dashboard/index.php', [], );
     }
 
     public function getTest() {

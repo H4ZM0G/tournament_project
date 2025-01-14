@@ -9,9 +9,9 @@
             <div class="card text-center">
                 <div class="card-body">
                     <i class="fas fa-trophy card-custom-icon text-primary"></i>
-                    <h5 class="card-title mt-2">Tournois</h5>
-                    <p class="card-ztext">Inscrivez vous à un tournois</p>
-                    <a href="/front/tournament" class="btn btn-primary">S'inscrire</a>
+                    <h5 class="card-title mt-2">Jeux</h5>
+                    <p class="card-ztext">Regarder tout les jeux disponibles</p>
+                    <a href="/Game" class="btn btn-primary">Voir</a>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <i class="fas fa-ranking-star card-custom-icon text-primary"></i>
                     <h5 class="card-title mt-2">Classement</h5>
                     <p class="card-text">Regarder les classements</p>
-                    <a href="/user/tournament" class="btn btn-primary">Voir</a>
+                    <a href="/#" class="btn btn-primary">Voir</a>
                 </div>
             </div>
         </div>

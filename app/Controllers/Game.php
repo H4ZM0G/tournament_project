@@ -31,19 +31,19 @@ class Game extends BaseController
                 $game['category_name'] = isset($categoryNames[$game['id_category']]) ? $categoryNames[$game['id_category']] : 'Inconnue';
             }
 
-            return $this->view("/front/game/index", ['games' => $games], true);
+            return $this->view("/front/game/index", ['games' => $games] );
         }
 
         $categories = $this->db->table('game_category')->select('id, name')->get()->getResultArray();
         if ($action == "new") {
             $this->addBreadcrumb('Création d\'un jeu', '');
-            return $this->view("/front/game/game", ['categories' => $categories], true);
+            return $this->view("/front/game/game", ['categories' => $categories] );
         }
         if ($action == "edit" && $id != null) {
             $jeu = $gm->find($id);
             if ($jeu) {
                 $this->addBreadcrumb('Modification de ' . $jeu['name'], '');
-                return $this->view("/front/game/game", ["jeu" => $jeu, "categories" => $categories], true);
+                return $this->view("/front/game/game", ["jeu" => $jeu, "categories" => $categories],);
             } else {
                 $this->error("L'ID du jeu n'existe pas");
                 return $this->redirect("/front/game");

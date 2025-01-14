@@ -91,7 +91,7 @@ abstract class BaseController extends Controller
      *
      * @var string
      */
-    protected $title_prefix = 'Votre Projet';
+    protected $title_prefix = 'Mon Projet';
 
     /**
      * Menus à gérer dynamiquement dans l'application.
@@ -204,7 +204,7 @@ abstract class BaseController extends Controller
         if (isset($this->session->user)) {
             if (!in_array($this->session->user->getPermissionSlug(), $this->requiredPermissions)) {
                 $this->session->set('redirect_url', current_url(true)->getPath());
-                $this->redirect('/Profil');
+                $this->redirect('/admin/game');
             }
             return false;
         }

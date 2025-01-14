@@ -20,6 +20,19 @@ class TableTournament extends Migration
                 'unsigned'   => true,
                 'constraint'     => 11,
             ],
+            'nb_player' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
+                'constraint'     => 11,
+            ],
+            'date_start' => [
+                'type'       => 'DATETIME',
+                'null'       => true,
+            ],
+            'date_end' => [
+                'type'       => 'DATETIME',
+                'null'       => true,
+            ],
             'created_at' => [
                 'type'       => 'DATETIME',
                 'null'       => true,
