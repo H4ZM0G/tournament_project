@@ -58,6 +58,16 @@ class Tournament extends BaseController
         $data = $this->request->getPost();
         $tm = Model("TournamentModel");
 
+        $data['nb_player'] = $this->request->getPost('number'); // 'number' correspond au name dans le formulaire
+        $data['date_start'] = $this->request->getPost('date_deb'); // 'date_deb' correspond au name dans le formulaire
+        $data['date_end'] = $this->request->getPost('date_fin'); // 'date_fin' correspond au name dans le formulaire
+
+        // Validation des champs obligatoires
+        if (empty($data['name']) || empty($data['id_game']) || empty($data['nb_player']) || empty($data['date_start']) || empty($data['date_end'])) {
+            $this->error("Tous les champs obligatoires doivent être remplis.");
+            return $this->redirect("/admin/tournament/new");
+        }
+
         // Créer l'utilisateur et obtenir son ID
         $newTournamentId = $tm->createTournament($data);
 

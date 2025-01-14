@@ -65,7 +65,9 @@ class Login extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $username = $this->request->getPost('username');
-        $data = ['username' => $username, 'email' => $email, 'password' => $password, 'id_permission' => 3];
+        $firstname = $this->request->getPost('firstname');
+        $name = $this->request->getPost('name');
+        $data = ['username' => $username, 'firstname' => $firstname, 'name' => $name, 'email' => $email, 'password' => $password, 'id_permission' => 3];
         $um = Model('UserModel');
         if (!$um->createUser($data)) {
             $errors = $um->errors();

@@ -60,55 +60,56 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="number" class="form-label">Sélectionner un nombre</label>
-                                <input type="number" id="number" name="number" class="form-control"
-                                       min="1" max="100" step="1" placeholder="Choisir un nombre" />
+                                <label for="number" class="form-label">Sélectionner un nombre de participant</label>
+                                <input type="number" id="number"
+                                       value="<?= isset($tournois) ? $tournois['nb_player'] : ""; ?>"
+                                       name="number" class="form-control" placeholder="Choisir un nombre"/>
                             </div>
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="tournament" class="form-label">Date de début du tournois</label>
-                                        <input type="date" id="tournament" name="date_deb" class="form-control"
-                                               value="<?= isset($tournois) ? $tournois['date_deb'] : ''; ?>"/>
+                                        <input type="date" id="tournament" name="date_start" class="form-control"
+                                               value="<?= isset($tournois) ? $tournois['date_start'] : ''; ?>"/>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="tournament" class="form-label">Date de fin du tournois</label>
-                                        <input type="date" id="tournament" name="date_fin" class="form-control"
-                                               value="<?= isset($tournois) ? $tournois['date_fin'] : ''; ?>"/>
+                                        <input type="date" id="tournament" name="date_end" class="form-control"
+                                               value="<?= isset($tournois) ? $tournois['date_end'] : ''; ?>"/>
                                     </div>
                                 </div>
                             </div>
-                        <div class="mb-3 d-flex align-items-center">
-                            <label for="image" class="form-label me-2">Avatar</label>
-                            <div id="preview">
-                                <?php
-                                $profileImageUrl = isset($tournois['avatar_url']) ? base_url($tournois['avatar_url']) : "#";
-                                ?>
-                                <img class="img-thumbnail me-2" alt="Aperçu de l'image"
-                                     style="display: <?= isset($tournois['avatar_url']) ? "block" : "none" ?>; max-width: 100px;"
-                                     src="<?= $profileImageUrl ?>">
+                            <div class="mb-3 d-flex align-items-center">
+                                <label for="image" class="form-label me-2">Avatar</label>
+                                <div id="preview">
+                                    <?php
+                                    $profileImageUrl = isset($tournois['avatar_url']) ? base_url($tournois['avatar_url']) : "#";
+                                    ?>
+                                    <img class="img-thumbnail me-2" alt="Aperçu de l'image"
+                                         style="display: <?= isset($tournois['avatar_url']) ? "block" : "none" ?>; max-width: 100px;"
+                                         src="<?= $profileImageUrl ?>">
+                                </div>
+
+                                <input class="form-control" type="file" name="profile_image" id="image">
                             </div>
-
-                            <input class="form-control" type="file" name="profile_image" id="image">
                         </div>
+
+                        <div class="tab-pane" id="onglet" role="tabpanel" aria-labelledby="onglet-tab" tabindex="0">
+
+                        </div>
+
                     </div>
+                </div>
 
-                    <div class="tab-pane" id="onglet" role="tabpanel" aria-labelledby="onglet-tab" tabindex="0">
-
-                    </div>
-
+                <div class="card-footer text-end">
+                    <?php if (isset($tournois)): ?>
+                        <input type="hidden" name="id" value="<?= $tournois['id']; ?>">
+                    <?php endif; ?>
+                    <button type="submit" class="btn btn-primary">
+                        <?= isset($tournois) ? "Sauvegarder" : "Enregistrer" ?>
+                    </button>
                 </div>
             </div>
-
-            <div class="card-footer text-end">
-                <?php if (isset($tournois)): ?>
-                    <input type="hidden" name="id" value="<?= $tournois['id']; ?>">
-                <?php endif; ?>
-                <button type="submit" class="btn btn-primary">
-                    <?= isset($tournois) ? "Sauvegarder" : "Enregistrer" ?>
-                </button>
-            </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>

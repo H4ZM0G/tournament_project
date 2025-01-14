@@ -26,11 +26,11 @@ class TableTournament extends Migration
                 'constraint'     => 11,
             ],
             'date_start' => [
-                'type'       => 'DATETIME',
+                'type'       => 'DATE',
                 'null'       => true,
             ],
             'date_end' => [
-                'type'       => 'DATETIME',
+                'type'       => 'DATE',
                 'null'       => true,
             ],
             'created_at' => [

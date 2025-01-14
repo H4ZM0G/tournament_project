@@ -25,11 +25,10 @@ class TournamentModel extends Model
     protected $validationRules = [
         'name' => 'required|min_length[3]|max_length[255]',
         'id_game' => 'required|is_natural_no_zero',
-        'nb_player' => 'required|is_natural|less_than_equal_to[100]|greater_than_equal_to[0]',
-        'date_start' => 'required|is_natural_no_zero',
-        'date_end' => 'required|is_natural_no_zero',
+        'nb_player' => 'required|integer|greater_than_equal_to[1]|less_than_equal_to[100]',
+        'date_start' => 'required|valid_date[Y-m-d]',
+        'date_end' => 'required|valid_date[Y-m-d]|',
     ];
-
     protected $validationMessages = [
         'name' => [
             'required' => 'Le nom du jeu est requis.',
@@ -37,8 +36,23 @@ class TournamentModel extends Model
             'max_length' => 'Le nom du jeu ne doit pas dépasser 255 caractères.',
         ],
         'id_game' => [
-            'required' => 'La catégorie est requise.',
-            'is_natural_no_zero' => 'La catégorie doit être un entier positif.',
+            'required' => 'L\'identifiant du jeu est requis.',
+            'is_natural_no_zero' => 'L\'identifiant du jeu doit être un entier positif non nul.',
+        ],
+        'nb_player' => [
+            'required' => 'Le nombre de joueurs est requis.',
+            'integer' => 'Le nombre de joueurs doit être un entier.',
+            'greater_than_equal_to' => 'Le nombre de joueurs doit être au moins 1.',
+            'less_than_equal_to' => 'Le nombre de joueurs ne doit pas dépasser 100.',
+        ],
+        'date_start' => [
+            'required' => 'La date de début est requise.',
+            'valid_date' => 'La date de début doit être au format valide (YYYY-MM-DD HH:MM:SS).',
+        ],
+        'date_end' => [
+            'required' => 'La date de fin est requise.',
+            'valid_date' => 'La date de fin doit être au format valide (YYYY-MM-DD HH:MM:SS).',
+            'after_or_equal_date' => 'La date de fin doit être postérieure ou égale à la date de début.',
         ],
     ];
 
