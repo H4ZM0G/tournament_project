@@ -76,7 +76,7 @@
                     </p>
                 </div>
                 <div class="input-group">
-                    <a class="btn btn-primary" href="<?= base_url('/') ?>">Retour à l'accueil</a>
+                    <a class="btn btn-primary" href="<?= base_url('/Dashboard') ?>">Retour à l'accueil</a>
                 </div>
             </div>
         </div>
