@@ -10,16 +10,10 @@ class ParticipantModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['id_user', 'id_tournament', 'created_at', 'updated_at'];
+    protected $allowedFields = ['id_user', 'id_tournament'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
-
-    // Champs de gestion des dates
-    protected $useTimestamps = true;
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
 
     // Validation
     protected $validationRules = [

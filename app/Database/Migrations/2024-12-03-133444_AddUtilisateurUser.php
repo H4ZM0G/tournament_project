@@ -15,7 +15,7 @@ class AddUtilisateurUser extends Migration
             'firstname'    => 'user',
             'email'        => 'user@user.fr',
             'password'     => password_hash('123456789', PASSWORD_DEFAULT),
-            'id_permission' => 2, // Id de la permission Administrateur
+            'id_permission' => 3, // Id de la permission Utilisateur
             'created_at'   => date('Y-m-d H:i:s'),
             'updated_at'   => date('Y-m-d H:i:s'),
         ];

@@ -12,49 +12,47 @@ class Participant extends BaseController
         ['text' => 'Tableau de Bord', 'url' => '/admin/dashboard'],
         ['text' => 'Gestion des participants', 'url' => '/admin/participant']
     ];
-    protected $db;
 
-    public function __construct()
-    {
-        $this->db = \Config\Database::connect();
-    }
-
-    public function getindex($action = null, $id = null)
+    public function getindex($action = null, $idTournament = null)
     {
         $pm = model("ParticipantModel");
 
-        if ($action == null && $id == null) {
-            $participants = $pm->getParticipantCategory(); // Récupérer les participants avec leurs relations
+        if ($action == null && $idTournament == null) {
+            // Afficher la liste des participants
+            $participants = $pm->getParticipantCategory(); // À ajuster selon ta logique
             return $this->view("/admin/participant/index", ['participants' => $participants], true);
         }
 
         if ($action == "new") {
+            // Formulaire de création de participant
             $this->addBreadcrumb('Création d\'un participant', '');
-            $users = $this->db->table('user')->get()->getResultArray(); // Récupérer les utilisateurs
-            $tournaments = $this->db->table('tournament')->get()->getResultArray(); // Récupérer les tournois
+            $users = $this->db->table('user')->get()->getResultArray();
+            $tournaments = $this->db->table('tournament')->get()->getResultArray();
             return $this->view("/admin/participant/participant", [
                 'users' => $users,
                 'tournaments' => $tournaments
             ], true);
         }
 
-        if ($action == "edit" && $id != null) {
-            $participant = $pm->find($id);
+        if ($action == "edit" && $idTournament != null) {
+            // Afficher un formulaire pour modifier un participant
+            $participant = $pm->find($idTournament);
             if ($participant) {
-                $this->addBreadcrumb('Modification du participant numéro ' . $participant['id'], '');
-                $users = $this->db->table('user')->get()->getResultArray(); // Récupérer les utilisateurs
-                $tournaments = $this->db->table('tournament')->get()->getResultArray(); // Récupérer les tournois
+                $this->addBreadcrumb('Modification du participant', '');
+                $users = $this->db->table('user')->get()->getResultArray();
+                $tournaments = $this->db->table('tournament')->get()->getResultArray();
                 return $this->view("/admin/participant/participant", [
                     'participant' => $participant,
                     'users' => $users,
                     'tournaments' => $tournaments
                 ], true);
             } else {
-                $this->error("L'ID participant n'existe pas");
+                $this->error("Participant introuvable");
                 return $this->redirect("/admin/participant");
             }
         }
 
+        // Retourner une erreur si l'action n'est pas reconnue
         $this->error("Action non reconnue");
         return $this->redirect("/admin/participant");
     }
@@ -64,6 +62,13 @@ class Participant extends BaseController
         $data = $this->request->getPost();
         $pm = model("ParticipantModel");
 
+        // Valider les données
+        if (!isset($data['id_tournament']) || !isset($data['id_user'])) {
+            $this->error("Les informations sur le tournoi et l'utilisateur sont requises.");
+            return $this->redirect("/admin/participant/new");
+        }
+
+        // Insertion du participant
         if ($pm->insert($data)) {
             $this->success("Le participant a bien été ajouté.");
             return $this->redirect("/admin/participant");
@@ -81,22 +86,30 @@ class Participant extends BaseController
         $data = $this->request->getPost();
         $pm = model("ParticipantModel");
 
+        // Vérifier que l'ID existe dans les données
+        if (!isset($data['id']) || !isset($data['id_tournament']) || !isset($data['id_user'])) {
+            $this->error("Les informations nécessaires à la mise à jour sont manquantes.");
+            return $this->redirect("/admin/participant");
+        }
+
+        // Mettre à jour le participant
         if ($pm->update($data['id'], $data)) {
             $this->success("Le participant a bien été modifié.");
+            return $this->redirect("/admin/participant");
         } else {
             $errors = $pm->errors();
             foreach ($errors as $error) {
                 $this->error($error);
             }
+            return $this->redirect("/admin/participant/edit/{$data['id']}");
         }
-
-        return $this->redirect("/admin/participant");
     }
 
     public function delete($id)
     {
         $pm = model("ParticipantModel");
 
+        // Suppression du participant
         if ($pm->delete($id)) {
             $this->success("Le participant a bien été supprimé.");
         } else {
@@ -104,5 +117,22 @@ class Participant extends BaseController
         }
 
         return $this->redirect("/admin/participant");
+    }
+
+    public function getParticipantsByTournament($idTournament)
+    {
+        $pm = model("ParticipantModel");
+
+        // Récupérer les participants en fonction du tournoi
+        $participants = $pm->where('id_tournament', $idTournament)->findAll();
+
+        // Vérifier s'il y a des participants
+        if (empty($participants)) {
+            $this->error("Aucun participant trouvé pour ce tournoi.");
+            return $this->redirect("/admin/participant");
+        }
+
+        // Retourner la vue avec les participants associés au tournoi
+        return $this->view("/admin/participant/index", ['participants' => $participants], true);
     }
 }
