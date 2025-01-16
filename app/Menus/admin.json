@@ -36,11 +36,6 @@
         "title": "Créer un tournois",
         "url": "/admin/tournament",
         "icon": "<i class=\"nav-icon fa-solid fa-envelope\"></i>"
-      },
-      "participant": {
-        "title": "Participant",
-        "url": "/admin/participant",
-        "icon": "<i class=\"nav-icon fa-solid fa-eye\"></i>"
       }
     }
   },

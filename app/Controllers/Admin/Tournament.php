@@ -3,6 +3,8 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Controllers\Admin\Participant;
+
 class Tournament extends BaseController
 {
     protected $require_auth = true;
