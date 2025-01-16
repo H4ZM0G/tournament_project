@@ -6,6 +6,7 @@
                 <a href="<?= base_url('/admin/tournament/new'); ?>"><i class="fa-solid fa-plus"></i></a>
             </div>
             <div class="card-body">
+                <!--                Onglet des tournois-->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="tournament-tab" data-bs-toggle="tab"
@@ -13,6 +14,7 @@
                                 aria-selected="true">Tournois
                         </button>
                     </li>
+                    <!--                    Onglet des participant-->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="participant-tab" data-bs-toggle="tab"
                                 data-bs-target="#participant" type="button" role="tab" aria-controls="participant"
@@ -27,6 +29,7 @@
                     </li>
                 </ul>
                 <div class="tab-content border p-3">
+                    <!--                    Onglet des tournois-->
                     <div class="tab-pane active" id="tournament" role="tabpanel" aria-labelledby="tournament-tab"
                          tabindex="0">
                         <table id="tableTournaments" class="table table-hover">
@@ -48,6 +51,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <!--                    Onglet des participant-->
                     <div class="tab-pane" id="participant" role="tabpanel" aria-labelledby="participant-tab"
                          tabindex="0">
                         <div class="card">
@@ -67,6 +71,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+<!--                                    <tr>-->
+<!--                                        <td>--><?php //= $participant['id_tournament']; ?><!--</td>-->
+<!--                                        <td>--><?php //= $participant['id_user']; ?><!--</td>-->
+<!--                                        <td>-->
+<!--                                            <a href="--><?php //= base_url('/' . $participant['id']); ?><!--">-->
+<!--                                                <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></i></button>-->
+<!--                                            </a>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     </tbody>
                                 </table>
                             </div>
@@ -145,41 +158,5 @@
             ]
         });
 
-        // Initialisation du tableau des participants (similaire à celui des tournois)
-        $('#tableParticipants').DataTable({
-            "responsive": true,
-            "processing": true,
-            "serverSide": true,
-            "pageLength": 10,
-            "language": {
-                url: baseUrl + 'js/datatable/datatable-2.1.4-fr-FR.json',
-            },
-            "ajax": {
-                "url": baseUrl + "admin/participant/SearchParticipant",
-                "type": "POST"
-            },
-            "columns": [
-                {"data": "id_tournament", "className": "text-center"},
-                {"data": "id_user", "className": "text-center"},
-                {
-                    data: 'id',
-                    sortable: false,
-                    render: function (data) {
-                        return `<a href="${baseUrl}admin/participant/edit/${data}"><i class="fa-solid fa-pencil"></i></a>`;
-                    },
-                    "className": "text-center"
-                },
-                {
-                    data: 'id',
-                    sortable: false,
-                    render: function (data, type, row) {
-                        return (row.deleted_at === null ?
-                            `<a title="Désactiver" href="${baseUrl}admin/participant/deactivate/${row.id}"><i class="fa-solid fa-xl fa-toggle-on text-success"></i></a>` :
-                            `<a title="Activer" href="${baseUrl}admin/participant/activate/${row.id}"><i class="fa-solid fa-toggle-off fa-xl text-danger"></i></a>`);
-                    },
-                    "className": "text-center"
-                }
-            ]
-        });
     });
 </script>
