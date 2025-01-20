@@ -24,7 +24,7 @@ class Game extends BaseController
 
         if ($action == null && $id == null) {
             // Récupérer tous les jeux
-            $games = $gm->withDeleted()->getGamesWithMedia();
+            $games = $gm->withDeleted()->getGamesWithMediaFront();
 
             // Associer le nom de la catégorie à chaque jeu
             foreach ($games as &$game) {
@@ -90,7 +90,7 @@ class Game extends BaseController
     public function index()
     {
         $gameModel = model('GameModel');
-        $games = $gameModel->getGamesWithMedia();
+        $games = $gameModel->getGamesWithMediaFront();
 
         return view('front/game/index', ['games' => $games]);
     }

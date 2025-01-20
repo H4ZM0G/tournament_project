@@ -15,7 +15,36 @@
                             <p class="card-text">
                                 Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?>
                             </p>
-                            <a href="/Participant" class="btn btn-primary">S'inscrire</a>
+                            <a href="#" id="signupButton" class="btn btn-primary" data-bs-toggle="modal"
+                               data-bs-target="#confirmationModal">
+                                S'inscrire
+                            </a>
+                            <div class="modal fade" id="confirmationModal" tabindex="-1"
+                                 aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation
+                                                d'inscription</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Êtes-vous sûr de vouloir vous inscrire au tournoi suivant
+                                            : <?= esc($tournament['name']); ?> ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
+                                            <form action="/Participant" method="POST">
+                                                <input type="hidden" name="id_user" value="<?= $user->id ?>">
+                                                <input type="hidden" name="id_tournament"
+                                                       value="<?= $tournament['id'] ?>">
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

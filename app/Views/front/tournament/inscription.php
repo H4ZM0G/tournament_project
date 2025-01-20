@@ -1,30 +1,36 @@
-<div class="container mt-4">
-    <div class="row">
-        <?php if (!empty($tournaments)) : ?>
-            <?php foreach ($tournaments as $tournament): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div style="width: 100%; height: 200px; overflow: hidden;">
-                            <img src="<?= base_url($tournament['avatartournament_url'] ?? 'assets/img/avatars/default.png'); ?>"
-                                 class="card-img-top" alt="Image du jeu"
-                                 style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><?= esc($tournament['name']); ?></h5>
-                            <p class="card-text">
-                                Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?>
-                            </p>
-                            <form action="<?= base_url('Participant/register'); ?>" method="post">
-                                <input type="hidden" name="id_tournament" value="<?= $tournament['id']; ?>">
-                                <input type="hidden" name="id_user" value="<?= session()->get('user_id'); ?>">
-                                <button type="submit" class="btn btn-primary">S'inscrire</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p class="text-center">Aucun tournoi n'est disponible pour le moment.</p>
-        <?php endif; ?>
+<?php if (session()->getFlashdata('success')): ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('success') ?>
+    </div>
+<?php elseif (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
+<?php if (session()->getFlashdata('success')): ?>
+    <script>
+        // Afficher la modal de succès
+        var myModal = new bootstrap.Modal(document.getElementById('successModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    </script>
+<?php endif; ?>
+
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Inscription réussie !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Vous êtes désormais inscrit au tournoi avec succès.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -5,93 +5,34 @@
                 <h4>Liste des Tournois</h4>
                 <a href="<?= base_url('/admin/tournament/new'); ?>"><i class="fa-solid fa-plus"></i></a>
             </div>
-            <div class="card-body">
-                <!--                Onglet des tournois-->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="tournament-tab" data-bs-toggle="tab"
-                                data-bs-target="#tournament" type="button" role="tab" aria-controls="tournament"
-                                aria-selected="true">Tournois
-                        </button>
-                    </li>
-                    <!--                    Onglet des participant-->
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="participant-tab" data-bs-toggle="tab"
-                                data-bs-target="#participant" type="button" role="tab" aria-controls="participant"
-                                aria-selected="false">Participant
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="scoreboard-tab" data-bs-toggle="tab"
-                                data-bs-target="#scoreboard" type="button" role="tab" aria-controls="scoreboard"
-                                aria-selected="false">Classement
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content border p-3">
-                    <!--                    Onglet des tournois-->
-                    <div class="tab-pane active" id="tournament" role="tabpanel" aria-labelledby="tournament-tab"
-                         tabindex="0">
-                        <table id="tableTournaments" class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Image</th>
-                                <th>Nom du Tournois</th>
-                                <th>Id du jeu</th>
-                                <th>Nombre de participants</th>
-                                <th>Date de Début</th>
-                                <th>Date de Fin</th>
-                                <th>Voir les participants</th>
-                                <th>Modifier</th>
-                                <th>Actif</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--                    Onglet des participant-->
-                    <div class="tab-pane" id="participant" role="tabpanel" aria-labelledby="participant-tab"
-                         tabindex="0">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4>Liste des participant inscrit au tournois</h4>
-                                <a href="<?= base_url('/admin/participant/new'); ?>"><i
-                                            class="fa-solid fa-plus"></i></a>
-                            </div>
-                            <div class="card-body">
-                                <table id="tableParticipants" class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>ID tournois</th>
-                                        <th>ID user</th>
-                                        <th>Modifier</th>
-                                        <th>Actif</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-<!--                                    <tr>-->
-<!--                                        <td>--><?php //= $participant['id_tournament']; ?><!--</td>-->
-<!--                                        <td>--><?php //= $participant['id_user']; ?><!--</td>-->
-<!--                                        <td>-->
-<!--                                            <a href="--><?php //= base_url('/' . $participant['id']); ?><!--">-->
-<!--                                                <button class="btn btn-primary"><i class="fa-solid fa-eye"></i></i></button>-->
-<!--                                            </a>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="scoreboard" role="tabpanel" aria-labelledby="scoreboard-tab" tabindex="0">
-                        bonjour
-                    </div>
+
+            <div class="tab-content border p-3">
+                <!--                    Onglet des tournois-->
+                <div class="tab-pane active" id="tournament" role="tabpanel" aria-labelledby="tournament-tab"
+                     tabindex="0">
+                    <table id="tableTournaments" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Nom du Tournois</th>
+                            <th>Id du jeu</th>
+                            <th>Nombre de participants</th>
+                            <th>Date de Début</th>
+                            <th>Date de Fin</th>
+                            <th>Voir les participants</th>
+                            <th>Modifier</th>
+                            <th>Actif</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script>
     $(document).ready(function () {
@@ -127,8 +68,20 @@
                 {"data": "name", "className": "text-center"},
                 {"data": "id_game", "className": "text-center"},
                 {"data": "nb_player", "className": "text-center"},
-                {"data": "date_start", "className": "text-center"},
-                {"data": "date_end", "className": "text-center"},
+                {
+                    "data": "date_start",
+                    "className": "text-center",
+                    "render": function (data) {
+                        return formatDateToEuropean(data);
+                    }
+                },
+                {
+                    "data": "date_end",
+                    "className": "text-center",
+                    "render": function (data) {
+                        return formatDateToEuropean(data);
+                    }
+                },
                 {
                     data: 'id',
                     sortable: false,
@@ -158,5 +111,15 @@
             ]
         });
 
+        // Fonction pour formater une date en format européen (dd/mm/yyyy)
+        function formatDateToEuropean(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            if (isNaN(date)) return dateString; // Si la date est invalide, retourner telle quelle
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
     });
 </script>

@@ -10,7 +10,7 @@ class TournamentModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['name' ,'id_game', 'nb_player', 'date_start', 'date_end', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['name', 'id_game', 'nb_player', 'date_start', 'date_end', 'created_at', 'updated_at', 'deleted_at'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
@@ -25,7 +25,7 @@ class TournamentModel extends Model
     protected $validationRules = [
         'name' => 'required|min_length[3]|max_length[255]',
         'id_game' => 'required|is_natural_no_zero',
-        'nb_player' => 'required|integer|greater_than_equal_to[1]|less_than_equal_to[100]',
+        'nb_player' => 'required|integer|greater_than_equal_to[2]|less_than_equal_to[100]',
         'date_start' => 'required|valid_date[Y-m-d]',
         'date_end' => 'required|valid_date[Y-m-d]|',
     ];
@@ -47,11 +47,11 @@ class TournamentModel extends Model
         ],
         'date_start' => [
             'required' => 'La date de début est requise.',
-            'valid_date' => 'La date de début doit être au format valide (YYYY-MM-DD HH:MM:SS).',
+            'valid_date' => 'La date de début doit être au format valide (YYYY-MM-DD).',
         ],
         'date_end' => [
             'required' => 'La date de fin est requise.',
-            'valid_date' => 'La date de fin doit être au format valide (YYYY-MM-DD HH:MM:SS).',
+            'valid_date' => 'La date de fin doit être au format valide (YYYY-MM-DD).',
             'after_or_equal_date' => 'La date de fin doit être postérieure ou égale à la date de début.',
         ],
     ];
@@ -64,6 +64,17 @@ class TournamentModel extends Model
         $builder->join('media', 'tournament.id = media.entity_id AND media.entity_type = "tournament"', 'left');
         $builder->select('tournament.*, media.file_path as avatartournament_url');
 
+        return $builder->get()->getResultArray();
+    }
+
+    public function getTournamentsWithMediaFront()
+    {
+        $builder = $this->builder();
+        $builder->join('media', 'tournament.id = media.entity_id AND media.entity_type = "tournament"', 'left');
+        $builder->join('game', 'tournament.id_game = game.id ', 'left');
+        $builder->select('tournament.*, media.file_path as avatartournament_url, game.deleted_at');
+        $builder->where('tournament.deleted_at ', null) // Filtre pour les tournois actifs
+        ->where('game.deleted_at', null);       // Filtre pour les jeux actifs
 
         return $builder->get()->getResultArray();
     }
@@ -143,5 +154,13 @@ class TournamentModel extends Model
 
         return $builder->countAllResults();
     }
+
+    public function getActiveTournaments()
+    {
+        $builder = $this->builder();
+        $builder->where('deleted_at', null); // On récupère uniquement les tournois actifs
+        return $builder->get()->getResultArray();
+    }
+
 
 }
