@@ -9,8 +9,9 @@ class Tournament extends BaseController
 {
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
-    protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des tournois', 'url' => '/admin/tournament']];
+    protected $breadcrumb = [['text' => 'Tableau de Bord', 'url' => '/admin/dashboard'], ['text' => 'Gestion des tournois', 'url' => '/admin/tournament']];
     protected $db;
+
     public function __construct()
     {
         // Initialisation de la base de données
@@ -56,13 +57,14 @@ class Tournament extends BaseController
         return $this->redirect("/admin/tournament");
     }
 
-    public function postcreate() {
+    public function postcreate()
+    {
         $data = $this->request->getPost();
         $tm = Model("TournamentModel");
 
-        $data['nb_player'] = $this->request->getPost('number'); // 'number' correspond au name dans le formulaire
-        $data['date_start'] = $this->request->getPost('date_deb'); // 'date_deb' correspond au name dans le formulaire
-        $data['date_end'] = $this->request->getPost('date_fin'); // 'date_fin' correspond au name dans le formulaire
+        $data['nb_player'] = $this->request->getPost('nb_player'); // 'number' correspond au name dans le formulaire
+        $data['date_start'] = $this->request->getPost('date_start'); // 'date_deb' correspond au name dans le formulaire
+        $data['date_end'] = $this->request->getPost('date_end'); // 'date_fin' correspond au name dans le formulaire
 
         // Validation des champs obligatoires
         if (empty($data['name']) || empty($data['id_game']) || empty($data['nb_player']) || empty($data['date_start']) || empty($data['date_end'])) {
@@ -76,16 +78,16 @@ class Tournament extends BaseController
         // Vérifier si la création a réussi
         if ($newTournamentId) {
             // Vérifier si des fichiers ont été soumis dans le formulaire
-            $file = $this->request->getFile('profile_image'); // 'profile_image' est le nom du champ dans le formulaire
+            $file = $this->request->getFile('tournament_image'); // 'profile_image' est le nom du champ dans le formulaire
             if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
                 // Préparer les données du média
                 $mediaData = [
                     'entity_type' => 'tournament',
-                    'entity_id'   => $newTournamentId,   // Utiliser le nouvel ID de l'utilisateur
+                    'entity_id' => $newTournamentId,   // Utiliser le nouvel ID de l'utilisateur
                 ];
 
                 // Utiliser la fonction upload_file() pour gérer l'upload et les données du média
-                $uploadResult = upload_file($file, 'avatar', $data['name'], $mediaData);
+                $uploadResult = upload_file($file, 'avatartournament', $data['name'], $mediaData);
 
                 // Vérifier le résultat de l'upload
                 if (is_array($uploadResult) && $uploadResult['status'] === 'error') {
@@ -105,7 +107,8 @@ class Tournament extends BaseController
         }
     }
 
-    public function postupdate() {
+    public function postupdate()
+    {
         // Récupération des données envoyées via POST
         $data = $this->request->getPost();
 
@@ -113,7 +116,7 @@ class Tournament extends BaseController
         $tm = Model("TournamentModel");
 
         // Vérifier si un fichier a été soumis dans le formulaire
-        $file = $this->request->getFile('profile_image'); // 'profile_image' est le nom du champ dans le formulaire
+        $file = $this->request->getFile('tournament_image'); // 'profile_image' est le nom du champ dans le formulaire
         // Si un fichier a été soumis
         if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
             // Récupération du modèle MediaModel
@@ -124,11 +127,11 @@ class Tournament extends BaseController
             // Préparer les données du média pour le nouvel upload
             $mediaData = [
                 'entity_type' => 'tournament',
-                'entity_id'   => $data['id'],   // Utiliser l'ID de l'utilisateur
+                'entity_id' => $data['id'],   // Utiliser l'ID de l'utilisateur
             ];
 
             // Utiliser la fonction upload_file() pour gérer l'upload et enregistrer les données du média
-            $uploadResult = upload_file($file, 'avatar', $data['name'], $mediaData, true, ['image/jpeg', 'image/png','image/jpg']);
+            $uploadResult = upload_file($file, 'avatartournament', $data['name'], $mediaData, true, ['image/jpeg', 'image/png', 'image/jpg']);
 
             // Vérifier le résultat de l'upload
             if (is_array($uploadResult) && $uploadResult['status'] === 'error') {
@@ -158,7 +161,8 @@ class Tournament extends BaseController
         return $this->redirect("/admin/tournament");
     }
 
-    public function getdeactivate($id){
+    public function getdeactivate($id)
+    {
         $tm = Model('TournamentModel');
         if ($tm->deleteTournament($id)) {
             $this->success("tournois désactivé");
@@ -168,7 +172,8 @@ class Tournament extends BaseController
         $this->redirect('/admin/tournament');
     }
 
-    public function getactivate($id){
+    public function getactivate($id)
+    {
         $tm = Model('TournamentModel');
         if ($tm->activateTournament($id)) {
             $this->success("tournois activé");
@@ -188,9 +193,9 @@ class Tournament extends BaseController
         $TournamentModel = model('App\Models\TournamentModel');
 
         // Paramètres de pagination et de recherche envoyés par DataTables
-        $draw        = $this->request->getPost('draw');
-        $start       = $this->request->getPost('start');
-        $length      = $this->request->getPost('length');
+        $draw = $this->request->getPost('draw');
+        $start = $this->request->getPost('start');
+        $length = $this->request->getPost('length');
         $searchValue = $this->request->getPost('search')['value'];
 
         // Obtenez les informations sur le tri envoyées par DataTables
@@ -209,11 +214,19 @@ class Tournament extends BaseController
         $filteredRecords = $TournamentModel->getFilteredTournaments($searchValue);
 
         $result = [
-            'draw'            => $draw,
-            'recordsTotal'    => $totalRecords,
+            'draw' => $draw,
+            'recordsTotal' => $totalRecords,
             'recordsFiltered' => $filteredRecords,
-            'data'            => $data,
+            'data' => $data,
         ];
         return $this->response->setJSON($result);
     }
+
+    public function getindexParticipant()
+    {
+        $pm = model("ParticipantModel");
+
+        $participants = $pm->withDeleted()->findAll();
+    }
+
 }

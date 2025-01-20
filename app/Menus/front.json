@@ -24,11 +24,6 @@
         "title": "Voir les tournois",
         "url": "/Tournament",
         "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>"
-      },
-      "gamecategory": {
-        "title": "Catégories de Jeu",
-        "url": "/admin/CategoryGame",
-        "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
       }
     }
   }

@@ -24,7 +24,7 @@ class Tournament extends BaseController
 
         if ($action == null && $id == null) {
             // Récupérer tous les jeux
-            $tournaments = $tm->withDeleted()->getTournamentsWithMedia();
+            $tournaments = $tm->withDeleted()->getTournamentsWithMediaFront();
 
             // Associer le nom de la catégorie à chaque jeu
             foreach ($tournaments as &$tournament) {
@@ -90,7 +90,7 @@ class Tournament extends BaseController
     public function index()
     {
         $TournamentModel = model('TournamentModel');
-        $tournaments = $TournamentModel->getTournamentsWithMedia();
+        $tournaments = $TournamentModel->getTournamentsWithMediaFront();
 
         return view('front/tournament/index', ['tournaments' => $tournaments]);
     }

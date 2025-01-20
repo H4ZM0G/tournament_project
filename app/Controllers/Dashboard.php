@@ -5,7 +5,7 @@ namespace App\Controllers;
 class Dashboard extends BaseController
 {
     protected $title      = 'Dashboard';
-protected $require_auth = true;
+    protected $require_auth = true;
     public function getIndex(): string
     {
         return $this->view('/front/dashboard/index.php', [], );

@@ -50,6 +50,16 @@ class GameModel extends Model
 
         return $builder->get()->getResultArray();
     }
+    public function getGamesWithMediaFront()
+    {
+        $builder = $this->builder();
+        $builder->join('media', 'game.id = media.entity_id AND media.entity_type = "game"', 'left');
+        $builder->select('game.*, media.file_path as avatargame_url');
+        $builder->where('game.deleted_at', null); // Filtre pour les jeux actifs
+
+
+        return $builder->get()->getResultArray();
+    }
 
     public function getGameById($id)
     {
