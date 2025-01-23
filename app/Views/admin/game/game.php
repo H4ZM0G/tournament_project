@@ -91,3 +91,13 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#category').select2({
+                theme: 'bootstrap-5',
+                placeholder: 'Rechercher une catégorie',
+                allowClear: true
+            }
+        );
+    });
+</script>

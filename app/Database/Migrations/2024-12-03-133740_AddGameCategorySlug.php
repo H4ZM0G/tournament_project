@@ -23,8 +23,6 @@ class AddGameCategorySlug extends Migration
         $this->updateSlugs('game_category');
 
         $this->db->table('game_category')->insert(['name' => 'Non classé', 'slug' => 'non-classe']);
-        $this->db->table('game_category')->insert(['name' => 'FPS', 'slug' => 'fps']);
-        $this->db->table('game_category')->insert(['name' => 'MMO', 'slug' => 'mmo']);
 
         $trigger_sql = "
             CREATE TRIGGER prevent_delete_initial_game_category
