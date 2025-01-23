@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\ParticipantModel;
 use App\Controllers\Admin\Participant;
 
 class Tournament extends BaseController
@@ -47,7 +48,8 @@ class Tournament extends BaseController
             $tournois = $tm->find($id);
             if ($tournois) {
                 $this->addBreadcrumb('Modification de ' . $tournois['name'], '');
-                return $this->view("/admin/tournament/tournament", ["tournois" => $tournois, "games" => $games], true);
+                $participants = $this->getParticipants($id);
+                return $this->view("/admin/tournament/tournament", ["tournois" => $tournois, "games" => $games, "participants" => $participants,], true);
             } else {
                 $this->error("L'ID du tournois n'existe pas");
                 return $this->redirect("/admin/tournament");
@@ -222,11 +224,51 @@ class Tournament extends BaseController
         return $this->response->setJSON($result);
     }
 
-    public function getindexParticipant()
+    public function getParticipants($tournamentId)
     {
-        $pm = model("ParticipantModel");
-
-        $participants = $pm->withDeleted()->findAll();
+        $participantModel = new ParticipantModel();
+        return $participantModel->getParticipantsWithTournamentInfo($tournamentId);
     }
 
+    public function postRemoveParticipant()
+    {
+        // Vérifiez si les données sont présentes
+        $id_user = $this->request->getPost('id_user');
+        $id_tournament = $this->request->getPost('id_tournament');
+
+        // Si les informations sont valides
+        if ($id_user && $id_tournament) {
+            // Chargez le modèle pour supprimer le participant
+            $participantModel = new ParticipantModel();
+            $success = $participantModel->removeParticipant($id_user, $id_tournament);
+
+            if ($success) {
+                // Redirigez vers la page du tournoi avec un message de succès
+                session()->setFlashdata('success', 'Participant supprimé avec succès.');
+                return redirect()->to('/admin/tournament/edit/' . $id_tournament);
+            } else {
+                // Redirigez avec un message d'erreur
+                session()->setFlashdata('error', 'Erreur lors de la suppression du participant.');
+                return redirect()->to('/admin/tournament/edit/' . $id_tournament);
+            }
+        } else {
+            // Si les paramètres sont manquants
+            session()->setFlashdata('error', 'Informations manquantes.');
+            return redirect()->to('/admin/tournament');
+        }
+    }
+    public function deleteParticipant($id_tournament, $id_user) {
+        // Appelle le modèle pour supprimer le tournoi
+        $deleted = $this->ParticipantModel->delete_participant($id_tournament, $id_user);
+
+        // Vérifie si la suppression a réussi
+        if ($deleted) {
+            $this->session->set_flashdata('success', 'Participant supprimé avec succès.');
+        } else {
+            $this->session->set_flashdata('error', 'Échec de la suppression du participant.');
+        }
+
+        // Redirige vers la page de liste des tournois ou une autre page appropriée
+        redirect('/admin/tournament');
+    }
 }

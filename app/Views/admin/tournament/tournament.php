@@ -108,7 +108,7 @@
                                     <input class="form-control" type="file" name="tournament_image" id="image">
                                 </div>
                             </div>
-
+                            <?php if (isset($tournois)): ?>
                             <!--                    Onglet des participant-->
                             <div class="tab-pane" id="participant" role="tabpanel" aria-labelledby="participant-tab"
                                  tabindex="0">
@@ -123,13 +123,26 @@
                                             <thead>
                                             <tr>
                                                 <th>ID tournois</th>
+                                                <th>Nom su tournois</th>
                                                 <th>ID user</th>
-                                                <th>Modifier</th>
+                                                <th>Pseudo</th>
                                                 <th>Actif</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-
+                                            <?php foreach ($participants as $participant): ?>
+                                                <tr>
+                                                    <td><?= $participant['id_tournament']; ?></td>
+                                                    <td><?= $participant['name']; ?></td>
+                                                    <td><?= $participant['id_user']; ?></td>
+                                                    <td><?= $participant['username']; ?></td>
+                                                    <td>
+                                                        <a href="<?= base_url('/admin/tournament/delete/'. $participant['id_user']); ?>" class="delete-product">
+                                                            <i class="fa-solid fa-trash" style="color: red"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -139,7 +152,7 @@
                                  tabindex="0">
                                 bonjour
                             </div>
-
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -155,3 +168,13 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#game').select2({
+                theme: 'bootstrap-5',
+                placeholder: 'Rechercher un jeu',
+                allowClear: true
+            }
+        );
+    });
+</script>
