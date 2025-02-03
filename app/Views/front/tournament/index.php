@@ -2,6 +2,8 @@
     <div class="row">
         <?php if (!empty($tournaments)) : ?>
             <?php foreach ($tournaments as $tournament): ?>
+                <input type="hidden" name="id_tournament" value="<?= $tournament['id']; ?>">
+                <input type="hidden" name="id_user" value="<?= ($user->id); ?>">
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <!-- Fixer une taille uniforme pour les images -->
@@ -13,44 +15,96 @@
                         <div class="card-body">
                             <h5 class="card-title"><?= esc($tournament['name']); ?></h5>
                             <p class="card-text">
-                                Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?>
+                                Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?><br>
+                                Nombre de joueurs : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?>
                             </p>
-                            <a href="#" id="signupButton" class="btn btn-primary" data-bs-toggle="modal"
-                               data-bs-target="#confirmationModal">
+
+                            <?php
+                            // Vérifier si l'utilisateur est inscrit
+                            $isRegistered = false;
+                            foreach ($participants as $participant) {
+                                if ($participant['id_tournament'] == $tournament['id'] && $participant['id_user'] == $user->id) {
+                                    $isRegistered = true;
+                                    break;
+                                }
+                            }
+                            ?>
+
+                            <?php if ($isRegistered): ?>
+                                <!-- Bouton de désinscription -->
+                                <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                   data-bs-target="#confirmationModaldésinscrire<?= esc($tournament['id']); ?>">
+                                    Se désinscrire
+                                </a>
+
+                                <div class="modal fade" id="confirmationModaldésinscrire<?= esc($tournament['id']); ?>" tabindex="-1"
+                                     aria-labelledby="confirmationModalLabel<?= esc($tournament['id']); ?>"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="confirmationModalLabel<?= esc($tournament['id']); ?>">
+                                                    Désinscription
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes-vous sûr de vouloir vous désinscrire du tournoi suivant :
+                                                <strong><?= esc($tournament['name']); ?></strong> ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
+                                                <a href="<?= base_url('/tournament/unregister?id_user=' . ($user->id) . '&id_tournament=' . $tournament['id']); ?>">
+                                                    <button class="btn btn-primary">Confirmer</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+
+                            <!-- Bouton avec un ID unique pour ouvrir le bon modal -->
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                               data-bs-target="#confirmationModal<?= esc($tournament['id']); ?>">
                                 S'inscrire
                             </a>
-                            <div class="modal fade" id="confirmationModal" tabindex="-1"
-                                 aria-labelledby="confirmationModalLabel" aria-hidden="true">
+
+                            <!-- Modal spécifique à chaque tournoi -->
+                            <div class="modal fade" id="confirmationModal<?= esc($tournament['id']); ?>" tabindex="-1"
+                                 aria-labelledby="confirmationModalLabel<?= esc($tournament['id']); ?>"
+                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation
-                                                d'inscription</h5>
+                                            <h5 class="modal-title"
+                                                id="confirmationModalLabel<?= esc($tournament['id']); ?>">
+                                                Confirmation d'inscription
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Êtes-vous sûr de vouloir vous inscrire au tournoi suivant
-                                            : <?= esc($tournament['name']); ?> ?
+                                            Êtes-vous sûr de vouloir vous inscrire au tournoi suivant :
+                                            <strong><?= esc($tournament['name']); ?></strong> ?
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
-                                            <form action="/Participant" method="POST">
-                                                <input type="hidden" name="id_user" value="<?= $user->id ?>">
-                                                <input type="hidden" name="id_tournament"
-                                                       value="<?= $tournament['id'] ?>">
-                                                <button type="submit" class="btn btn-primary">Confirmer</button>
-                                            </form>
+                                            <a href="<?= base_url('/tournament/register?id_user=' . ($user->id) . '&id_tournament=' . $tournament['id']); ?>">
+                                                <button class="btn btn-primary">Confirmer</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> <!-- Fin du modal -->
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
-            <p class="text-center">Aucun tournois n'est disponible pour le moment.</p>
+            <p class="text-center">Aucun tournoi n'est disponible pour le moment.</p>
         <?php endif; ?>
     </div>
 </div>
