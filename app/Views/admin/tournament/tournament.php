@@ -109,49 +109,46 @@
                                 </div>
                             </div>
                             <?php if (isset($tournois)): ?>
-                            <!--                    Onglet des participant-->
-                            <div class="tab-pane" id="participant" role="tabpanel" aria-labelledby="participant-tab"
-                                 tabindex="0">
-                                <div class="card">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h4>Liste des participant inscrit au tournois</h4>
-                                        <a href="<?= base_url('/admin/participant/new'); ?>"><i
-                                                    class="fa-solid fa-plus"></i></a>
-                                    </div>
-                                    <div class="card-body">
-                                        <table id="tableParticipants" class="table table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>ID tournois</th>
-                                                <th>Nom su tournois</th>
-                                                <th>ID user</th>
-                                                <th>Pseudo</th>
-                                                <th>Actif</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php foreach ($participants as $participant): ?>
+                                <!--Onglet des participant-->
+                                <div class="tab-pane" id="participant" role="tabpanel" aria-labelledby="participant-tab"
+                                     tabindex="0">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h4>Liste des participant inscrit au tournois</h4>
+                                            <a href="<?= base_url('/admin/participant/new'); ?>"><i
+                                                        class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <table id="tableParticipants" class="table table-hover">
+                                                <thead>
                                                 <tr>
-                                                    <td><?= $participant['id_tournament']; ?></td>
-                                                    <td><?= $participant['name']; ?></td>
-                                                    <td><?= $participant['id_user']; ?></td>
-                                                    <td><?= $participant['username']; ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('/admin/tournament/delete/'. $participant['id_user']); ?>" class="delete-product">
-                                                            <i class="fa-solid fa-trash" style="color: red"></i>
-                                                        </a>
-                                                    </td>
+                                                    <th>Nom du tournois</th>
+                                                    <th>Pseudo du joueur</th>
+                                                    <th>Actif</th>
                                                 </tr>
-                                            <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($participants as $participant): ?>
+                                                    <tr>
+                                                        <td><?= $participant['name']; ?></td>
+                                                        <td><?= $participant['username']; ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('/admin/tournament/delete/' . $participant['id_user']); ?>"
+                                                               class="delete-product">
+                                                                <i class="fa-solid fa-trash" style="color: red"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="scoreboard" role="tabpanel" aria-labelledby="scoreboard-tab"
-                                 tabindex="0">
-                                bonjour
-                            </div>
+                                <div class="tab-pane" id="scoreboard" role="tabpanel" aria-labelledby="scoreboard-tab"
+                                     tabindex="0">
+                                    bonjour
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>

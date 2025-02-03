@@ -22,6 +22,7 @@ class Tournament extends BaseController
     public function getindex($action = null, $id = null)
     {
         $tm = model("TournamentModel");
+        $participants = model("ParticipantModel");
         $games = $this->db->table('game')->select('id, name')->get()->getResultArray();
         $GameNames = [];
         foreach ($games as $game) {
@@ -30,7 +31,6 @@ class Tournament extends BaseController
         if ($action == null && $id == null) {
             // Récupérer tous les tournois
             $tournaments = $tm->withDeleted()->findAll();
-
             // Associer le nom de la catégorie à chaque tournois
             foreach ($tournaments as &$tournament) {
                 $tournament['game_name'] = isset($GameNames[$tournament['id_game']]) ? $GameNames[$tournament['id_game']] : 'Inconnue';
@@ -42,7 +42,7 @@ class Tournament extends BaseController
 
         if ($action == "new") {
             $this->addBreadcrumb('Création d\'un tournois', '');
-            return $this->view("/admin/tournament/tournament", ['games' => $games], true);
+            return $this->view("/admin/tournament/tournament", ['games' => $games, "participants" => $participants], true);
         }
         if ($action == "edit" && $id != null) {
             $tournois = $tm->find($id);
