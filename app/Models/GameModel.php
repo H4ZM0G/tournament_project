@@ -137,4 +137,13 @@ class GameModel extends Model
         return $builder->countAllResults();
     }
 
+    public function getGameTitleOnly($id){
+        return $this->find($id)['name'];
+    }
+
+    public function getAllGamesTitleOnly(){
+        $this->select('game.name, game_category.name as category');
+        $this->join('game_category', 'game.id_category = game_category.id', 'left');
+        return $this->findAll();
+    }
 }

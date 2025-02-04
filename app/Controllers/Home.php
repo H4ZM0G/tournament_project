@@ -7,7 +7,7 @@ class Home extends BaseController
     protected $require_auth = false;
     public function index(): string
     {
-        return view('/front');
+        return view('/login/login');
     }
 
     public function getforbidden() : string
