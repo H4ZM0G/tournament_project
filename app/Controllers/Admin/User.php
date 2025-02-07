@@ -3,27 +3,30 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+
 class User extends BaseController
 {
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
-    protected $breadcrumb =  [['text' => 'Tableau de Bord','url' => '/admin/dashboard'],['text'=> 'Gestion des utilisateurs', 'url' => '/admin/user']];
-    public function getindex($id = null) {
+    protected $breadcrumb = [['text' => 'Tableau de Bord', 'url' => '/admin/dashboard'], ['text' => 'Gestion des utilisateurs', 'url' => '/admin/user']];
+
+    public function getindex($id = null)
+    {
 
         $um = Model("UserModel");
         if ($id == null) {
             $users = $um->getPermissions();
-            return $this->view("/admin/user/index.php",['users' => $users], true);
+            return $this->view("/admin/user/index.php", ['users' => $users], true);
         } else {
             $permissions = Model("UserPermissionModel")->getAllPermissions();
             if ($id == "new") {
-                $this->addBreadcrumb('Création d\' un utilisateur','');
-                return $this->view("/admin/user/user",["permissions" => $permissions], true);
+                $this->addBreadcrumb('Création d\' un utilisateur', '');
+                return $this->view("/admin/user/user", ["permissions" => $permissions], true);
             }
             $utilisateur = $um->getUserById($id);
             if ($utilisateur) {
                 $this->addBreadcrumb('Modification de ' . $utilisateur['username'], '');
-                return $this->view("/admin/user/user", ["utilisateur" => $utilisateur, "permissions" => $permissions ], true);
+                return $this->view("/admin/user/user", ["utilisateur" => $utilisateur, "permissions" => $permissions], true);
             } else {
                 $this->error("L'ID de l'utilisateur n'existe pas");
                 $this->redirect("/admin/user");
@@ -31,7 +34,8 @@ class User extends BaseController
         }
     }
 
-    public function postupdate() {
+    public function postupdate()
+    {
         // Récupération des données envoyées via POST
         $data = $this->request->getPost();
 
@@ -50,11 +54,11 @@ class User extends BaseController
             // Préparer les données du média pour le nouvel upload
             $mediaData = [
                 'entity_type' => 'user',
-                'entity_id'   => $data['id'],   // Utiliser l'ID de l'utilisateur
+                'entity_id' => $data['id'],   // Utiliser l'ID de l'utilisateur
             ];
 
             // Utiliser la fonction upload_file() pour gérer l'upload et enregistrer les données du média
-            $uploadResult = upload_file($file, 'avatar', $data['username'], $mediaData, true, ['image/jpeg', 'image/png','image/jpg']);
+            $uploadResult = upload_file($file, 'avatar', $data['username'], $mediaData, true, ['image/jpeg', 'image/png', 'image/jpg']);
 
             // Vérifier le résultat de l'upload
             if (is_array($uploadResult) && $uploadResult['status'] === 'error') {
@@ -85,8 +89,8 @@ class User extends BaseController
     }
 
 
-
-    public function postcreate() {
+    public function postcreate()
+    {
         $data = $this->request->getPost();
         $um = Model("UserModel");
 
@@ -101,7 +105,7 @@ class User extends BaseController
                 // Préparer les données du média
                 $mediaData = [
                     'entity_type' => 'user',
-                    'entity_id'   => $newUserId,   // Utiliser le nouvel ID de l'utilisateur
+                    'entity_id' => $newUserId,   // Utiliser le nouvel ID de l'utilisateur
                 ];
 
                 // Utiliser la fonction upload_file() pour gérer l'upload et les données du média
@@ -125,7 +129,8 @@ class User extends BaseController
         }
     }
 
-    public function getdeactivate($id){
+    public function getdeactivate($id)
+    {
         $um = Model('UserModel');
         if ($um->deleteUser($id)) {
             $this->success("Utilisateur désactivé");
@@ -135,7 +140,8 @@ class User extends BaseController
         $this->redirect('/admin/user');
     }
 
-    public function getactivate($id){
+    public function getactivate($id)
+    {
         $um = Model('UserModel');
         if ($um->activateUser($id)) {
             $this->success("Utilisateur activé");
@@ -144,6 +150,7 @@ class User extends BaseController
         }
         $this->redirect('/admin/user');
     }
+
 
     /**
      * Renvoie pour la requete Ajax les stocks fournisseurs rechercher par SKU ( LIKE )
@@ -155,9 +162,9 @@ class User extends BaseController
         $UserModel = model('App\Models\UserModel');
 
         // Paramètres de pagination et de recherche envoyés par DataTables
-        $draw        = $this->request->getPost('draw');
-        $start       = $this->request->getPost('start');
-        $length      = $this->request->getPost('length');
+        $draw = $this->request->getPost('draw');
+        $start = $this->request->getPost('start');
+        $length = $this->request->getPost('length');
         $searchValue = $this->request->getPost('search')['value'];
 
         // Obtenez les informations sur le tri envoyées par DataTables
@@ -176,11 +183,33 @@ class User extends BaseController
         $filteredRecords = $UserModel->getFilteredUser($searchValue);
 
         $result = [
-            'draw'            => $draw,
-            'recordsTotal'    => $totalRecords,
+            'draw' => $draw,
+            'recordsTotal' => $totalRecords,
             'recordsFiltered' => $filteredRecords,
-            'data'            => $data,
+            'data' => $data,
         ];
         return $this->response->setJSON($result);
+    }
+
+    public function getdeactivateblacklist($id)
+    {
+        $bm = Model('BlacklistModel');
+        if ($bm->deleteUserBlacklisted($id)) {
+            $this->success("Utilisateur enlever de la Blacklist");
+        } else {
+            $this->error("Utilisateur non enlevé de la Blacklist");
+        }
+        $this->redirect('/admin/user');
+    }
+
+    public function getactivateblacklist($id)
+    {
+        $bm = Model('BlacklistModel');
+        if ($bm->activateUserBlacklisted($id)) {
+            $this->success("Utilisateur Blacklisté");
+        } else {
+            $this->error("Utilisateur non Blacklisté");
+        }
+        $this->redirect('/admin/user');
     }
 }
