@@ -10,16 +10,16 @@ class UserModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['username','name', 'firstname', 'email', 'password', 'id_permission', 'id_school', 'score', 'bio', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['username', 'name', 'firstname', 'email', 'password', 'id_permission', 'id_school', 'score', 'bio', 'created_at', 'updated_at', 'deleted_at'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
 
     // Champs de gestion des dates
     protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
 
     // Validation
     protected $validationRules = [
@@ -28,26 +28,26 @@ class UserModel extends Model
         'name' => 'required|min_length[0]|max_length[100]',
         'firstname' => 'required|min_length[0]|max_length[100]',
         'bio' => 'max_length[500]',
-        'email'    => 'required|valid_email|is_unique[user.email,id,{id}]',
+        'email' => 'required|valid_email|is_unique[user.email,id,{id}]',
         'password' => 'required|min_length[8]',
         'id_permission' => 'required|is_natural_no_zero',
     ];
 
     protected $validationMessages = [
         'username' => [
-            'required'   => 'Le nom d\'utilisateur est requis.',
+            'required' => 'Le nom d\'utilisateur est requis.',
             'min_length' => 'Le nom d\'utilisateur doit comporter au moins 3 caractères.',
             'max_length' => 'Le nom d\'utilisateur ne doit pas dépasser 100 caractères.',
-            'is_unique'   => 'Ce nom d\'utilisateur est déja utilisé.',
+            'is_unique' => 'Ce nom d\'utilisateur est déja utilisé.',
         ],
         'name' => [
-            'required'   => 'Le nom est requis.',
+            'required' => 'Le nom est requis.',
             'min_length' => 'Le nom doit comporter au moins 0 caractères.',
             'max_length' => 'Le nom ne doit pas dépasser 100 caractères.',
 
         ],
         'firstname' => [
-            'required'   => 'Le prénom est requis.',
+            'required' => 'Le prénom est requis.',
             'min_length' => 'Le prénom doit comporter au moins 0 caractères.',
             'max_length' => 'Le prénom ne doit pas dépasser 100 caractères.',
 
@@ -56,16 +56,16 @@ class UserModel extends Model
             'max_length' => 'La biographie ne doit pas dépasser 500 caractères.',
         ],
         'email' => [
-            'required'   => 'L\'email est requis.',
+            'required' => 'L\'email est requis.',
             'valid_email' => 'L\'email doit être valide.',
-            'is_unique'   => 'Cet email est déjà utilisé.',
+            'is_unique' => 'Cet email est déjà utilisé.',
         ],
         'password' => [
-            'required'   => 'Le mot de passe est requis.',
+            'required' => 'Le mot de passe est requis.',
             'min_length' => 'Le mot de passe doit comporter au moins 8 caractères.',
         ],
         'id_permission' => [
-            'required'          => 'La permission est requise.',
+            'required' => 'La permission est requise.',
             'is_natural_no_zero' => 'La permission doit être un entier positif.',
         ],
     ];
@@ -74,30 +74,24 @@ class UserModel extends Model
     protected $beforeInsert = ['hashPassword'];
     protected $beforeUpdate = ['hashPassword'];
 
-    protected function hashPassword(array $data)
+    public function getPermissions()
     {
-        if (!isset($data['data']['password'])) {
-            return $data;
-        }
-
-        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        return $data;
+        $this->join('user_permission', 'user.id_permission = user_permission.id');
+        $this->join('blacklist', 'user.id = blacklist.user_id', 'left');
+        $this->select('user.*, user_permission.name as permission_name, blacklist.id as blacklistId ,blacklist.user_id as blacklistuser_id');
+        return $this->findAll();
     }
 
     // Relations avec les permissions
-    public function getPermissions()
-    {
-        return $this->join('user_permission', 'user.id_permission = user_permission.id')
-            ->select('user.*, user_permission.name as permission_name')
-            ->findAll();
-    }
 
     public function getUserById($id)
     {
-        $this->select('user.*, media.file_path as avatar_url');
+        $this->select('user.*, media.file_path as avatar_url, blacklist.id as blacklistid, blacklist.user_id as blacklistid_user');
         $this->join('media', 'user.id = media.entity_id AND media.entity_type = "user"', 'left');
+        $this->join('blacklist', 'user.id = blacklist.user_id', 'left');
         return $this->find($id);
     }
+
     public function getAllUsers()
     {
         return $this->findAll();
@@ -107,11 +101,12 @@ class UserModel extends Model
     {
         return $this->insert($data);
     }
+
     public function updateUser($id, $data)
     {
         $builder = $this->builder();
         if (isset($data['password'])) {
-            if($data['password'] == '') {
+            if ($data['password'] == '') {
                 unset($data['password']);
             } else {
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -120,12 +115,14 @@ class UserModel extends Model
         $builder->where('id', $id);
         return $builder->update($data);
     }
+
     public function deleteUser($id)
     {
         return $this->delete($id);
     }
 
-    public function countUserByPermission() {
+    public function countUserByPermission()
+    {
         $builder = $this->db->table('user U');
         $builder->select('UP.name, count(U.id) as count');
         $builder->join('user_permission UP', 'U.id_permission = UP.id');
@@ -133,7 +130,8 @@ class UserModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function activateUser($id) {
+    public function activateUser($id)
+    {
         $builder = $this->builder();
         $builder->set('deleted_at', NULL);
         $builder->where('id', $id);
@@ -160,7 +158,8 @@ class UserModel extends Model
         $builder = $this->builder();
         $builder->join('user_permission', 'user.id_permission = user_permission.id', 'left');
         $builder->join('media', 'user.id = media.entity_id AND media.entity_type = "user"', 'left');
-        $builder->select('user.*, user_permission.name as permission_name, media.file_path as avatar_url');
+        $builder->join('blacklist', 'user.id = blacklist.user_id', 'left');
+        $builder->select('user.*, user_permission.name as permission_name, media.file_path as avatar_url, blacklist.user_id as blacklistuser_id, blacklist.created_at as blacklistdate');
 
         // Recherche
         if ($searchValue != null) {
@@ -194,13 +193,23 @@ class UserModel extends Model
         $builder->select('user.*, user_permission.name as permission_name, media.file_path as avatar_url');
 
         // @phpstan-ignore-next-line
-        if (! empty($searchValue)) {
+        if (!empty($searchValue)) {
             $builder->like('username', $searchValue);
             $builder->orLike('email', $searchValue);
             $builder->orLike('user_permission.name', $searchValue);
         }
 
         return $builder->countAllResults();
+    }
+
+    protected function hashPassword(array $data)
+    {
+        if (!isset($data['data']['password'])) {
+            return $data;
+        }
+
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        return $data;
     }
 
 
