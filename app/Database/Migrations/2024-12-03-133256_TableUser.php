@@ -57,6 +57,12 @@ class TableUser extends Migration
                 'unsigned'   => true,
                 'null'       => true,
             ],
+            'counter_user' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'default'   => 3,
+                'null'       => false,
+            ],
             'created_at' => [
                 'type'       => 'DATETIME',
                 'null'       => true,
