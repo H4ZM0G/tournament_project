@@ -44,6 +44,13 @@
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="qualification-tab" data-bs-toggle="tab"
+                                            data-bs-target="#qualification" type="button" role="tab"
+                                            aria-controls="qualification"
+                                            aria-selected="false">Qualification
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="scoreboard-tab" data-bs-toggle="tab"
                                             data-bs-target="#scoreboard" type="button" role="tab"
                                             aria-controls="scoreboard"
@@ -140,6 +147,42 @@
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                             ONGLET QUALIF-->
+                                <div class="tab-pane" id="qualification" role="tabpanel" aria-labelledby="qualification-tab"
+                                     tabindex="0">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h4>Liste des participant inscrit aux phases de qualification</h4>
+                                            <a href="<?= base_url('/admin/qualifiaction/new'); ?>"><i
+                                                        class="fa-solid fa-plus"></i></a>
+                                        </div>
+                                        <div class="card-body">
+                                            <table id="tablequalification" class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>Nom du tournois</th>
+                                                    <th>Pseudo du joueur</th>
+                                                    <th>Status du joueur</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+<!--                                                --><?php //foreach ($qualifications as $qualification): ?>
+<!--                                                    <tr>-->
+<!--                                                        <td>--><?php //= $qualification['name']; ?><!--</td>-->
+<!--                                                        <td>--><?php //= $qualification['username']; ?><!--</td>-->
+<!--                                                        <td>-->
+<!--                                                            <a href="--><?php //= base_url('/admin/tournament/delete/' . $qualification['id_user']); ?><!--"-->
+<!--                                                               class="delete-product">-->
+<!--                                                                <i class="fa-solid fa-trash" style="color: red"></i>-->
+<!--                                                            </a>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                --><?php //endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>

@@ -57,9 +57,9 @@ class Database extends Config
     public array $development = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => 'root',
-        'password'     => 'root',
-        'database'     => 'tournament-slam',
+        'username'     => 'vipa0880_mtimothe',
+        'password'     => '_Pg+#,q41JRI',
+        'database'     => 'vipa0880_mtimothe',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
