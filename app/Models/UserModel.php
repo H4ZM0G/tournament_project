@@ -212,9 +212,6 @@ class UserModel extends Model
         return $data;
     }
 
-            return $builder->countAllResults();
-    }
-
     public function decrementCounterUser($userId)
     {
 
