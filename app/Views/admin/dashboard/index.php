@@ -48,7 +48,7 @@
                     <i class="fas fa-trophy card-custom-icon text-primary"></i>
                     <h5 class="card-title mt-2">Tournois</h5>
                     <p class="card-text">Tournois en cours</p>
-                    <a href="/admin/game" class="btn btn-primary">Voir les tournois</a>
+                    <a href="/admin/tournament" class="btn btn-primary">Voir les tournois</a>
                 </div>
             </div>
         </div>

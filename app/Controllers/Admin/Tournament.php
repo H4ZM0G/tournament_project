@@ -49,7 +49,7 @@ class Tournament extends BaseController
             if ($tournois) {
                 $this->addBreadcrumb('Modification de ' . $tournois['name'], '');
                 $participants = $this->getParticipants($id);
-                return $this->view("/admin/tournament/tournament", ["tournois" => $tournois, "games" => $games, "participants" => $participants,], true);
+                return $this->view("/admin/tournament/tournament", ["tournois" => $tournois, "games" => $games, "participants" => $participants], true);
             } else {
                 $this->error("L'ID du tournois n'existe pas");
                 return $this->redirect("/admin/tournament");

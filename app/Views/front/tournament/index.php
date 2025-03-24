@@ -16,14 +16,16 @@
                             <h5 class="card-title"><?= esc($tournament['name']); ?></h5>
                             <p class="card-text">
                                 Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?><br>
-                                Nombre de joueurs : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?>
+                                Nombre de joueurs qualifiés : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?><br>
+                                Nombre de participants : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?>
+
                             </p>
 
                             <?php
                             // Vérifier si l'utilisateur est inscrit
                             $isRegistered = false;
-                            foreach ($participants as $participant) {
-                                if ($participant['id_tournament'] == $tournament['id'] && $participant['id_user'] == $user->id) {
+                            foreach ($qualifications as $qualification) {
+                                if ($qualification['id_tournament'] == $tournament['id'] && $qualification['id_user'] == $user->id) {
                                     $isRegistered = true;
                                     break;
                                 }
@@ -51,7 +53,7 @@
                                                         aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Êtes-vous sûr de vouloir vous désinscrire du tournoi suivant :
+                                                Êtes-vous sûr de vouloir vous désinscrire des phases de qualification du tournoi suivant :
                                                 <strong><?= esc($tournament['name']); ?></strong> ?
                                             </div>
                                             <div class="modal-footer">
@@ -86,7 +88,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Êtes-vous sûr de vouloir vous inscrire au tournoi suivant :
+                                            Êtes-vous sûr de vouloir vous inscrire au phase de qualification du tournoi suivant :
                                             <strong><?= esc($tournament['name']); ?></strong> ?
                                         </div>
                                         <div class="modal-footer">
