@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $primaryKey = 'id';
 
     // Champs permis pour les opérations d'insertion et de mise à jour
-    protected $allowedFields = ['username', 'name', 'firstname', 'email', 'password', 'id_permission', 'id_school', 'score', 'bio', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['username', 'name', 'firstname', 'email', 'password', 'id_permission', 'id_school', 'score', 'bio', 'counter_user', 'created_at', 'updated_at', 'deleted_at'];
 
     // Activer le soft delete
     protected $useSoftDeletes = true;
@@ -212,5 +212,26 @@ class UserModel extends Model
         return $data;
     }
 
+            return $builder->countAllResults();
+    }
+
+    public function decrementCounterUser($userId)
+    {
+
+        $user = $this->find($userId);
+        if ($user && $user['counter_user'] > 0) {
+            $this->update($userId, ['counter_user' => $user['counter_user'] - 1]);
+        }
+    }
+
+
+
+    public function resetCounter($email)
+    {
+        $this->db->table('user')
+            ->set('counter_user', 3)
+            ->where('email', $email)
+            ->update();
+    }
 
 }
