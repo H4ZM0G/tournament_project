@@ -11,7 +11,7 @@
                     <i class="fas fa-trophy card-custom-icon text-primary"></i>
                     <h5 class="card-title mt-2">Jeux</h5>
                     <p class="card-ztext">Regarder tout les jeux disponibles</p>
-                    <a href="/Game" class="btn btn-primary">Voir</a>
+                    <a href="<?= base_url('/game') ?>" class="btn btn-primary">Voir</a>
                 </div>
             </div>
         </div>

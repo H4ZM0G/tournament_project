@@ -21,10 +21,10 @@
                     <td><?= $category['name']; ?></td>
                     <td><?= $category['slug']; ?></td>
                     <td>
-                        <a href="<?= base_url('/admin/CategoryGame/'. $category['id']); ?>"> <i class="fa-solid fa-pen" style="color: green"></i>
+                        <a href="<?= base_url('/admin/categorygame/'. $category['id']); ?>"> <i class="fa-solid fa-pen" style="color: green"></i>
                     </td>
                     <td>
-                        <a href="<?= base_url('/admin/CategoryGame/delete/'. $category['id']); ?>" class="delete">
+                        <a href="<?= base_url('/admin/categorygame/delete/'. $category['id']); ?>" class="delete">
                             <i class="fa-solid fa-trash" style="color: red"></i>
                         </a>
                     </td>
