@@ -20,7 +20,6 @@
                             <th>Nombre de participants</th>
                             <th>Date de Début</th>
                             <th>Date de Fin</th>
-                            <th>Voir les participants</th>
                             <th>Modifier</th>
                             <th>Actif</th>
                         </tr>
@@ -81,14 +80,6 @@
                     "render": function (data) {
                         return formatDateToEuropean(data);
                     }
-                },
-                {
-                    data: 'id',
-                    sortable: false,
-                    render: function (data) {
-                        return `<a href="${baseUrl}admin/participant"><i class="fa-solid fa-eye"></i></a>`;
-                    },
-                    "className": "text-center"
                 },
                 {
                     data: 'id',

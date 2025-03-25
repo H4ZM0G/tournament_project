@@ -15,14 +15,14 @@
   },
   "tournament": {
     "title": "Tournois",
-    "url": "/Tournament",
+    "url": "/tournament",
     "perm": "none",
     "icon": "<i class=\"nav-icon fa-solid fa-trophy\"></i>",
     "class": "main-menu-accueil",
     "subs": {
       "game": {
         "title": "Voir les tournois",
-        "url": "/Tournament",
+        "url": "/tournament",
         "icon": "<i class=\"nav-icon fa-solid fa-gamepad\"></i>"
       }
     }
