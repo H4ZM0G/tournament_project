@@ -1,4 +1,4 @@
-<div class="container mt-5">
+ <div class="container mt-5">
     <header class="mb-5">
         <h1 class="text-center">SLAM Admin</h1>
     </header>

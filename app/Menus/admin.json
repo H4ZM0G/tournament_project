@@ -20,7 +20,7 @@
       },
       "gamecategory": {
         "title": "Catégories de Jeu",
-        "url": "/admin/CategoryGame",
+        "url": "/admin/categorygame",
         "icon": "<i class=\"nav-icon fa-solid fa-list\"></i>"
       }
     }
