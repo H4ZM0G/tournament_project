@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-class CategorySchool extends BaseController
+class Categoryschool extends BaseController
 {
     protected $require_auth = true;
     protected $requiredPermissions = ['administrateur'];
