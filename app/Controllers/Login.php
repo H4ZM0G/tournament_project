@@ -74,7 +74,7 @@ class Login extends BaseController
             $data = ['errors' => $errors];
             return $this->redirect("/login/register", $data);
         }
-        return $this->redirect("/login");
+        return $this->redirect("/login0");
     }
 
     public function getlogout()

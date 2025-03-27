@@ -9,8 +9,6 @@
                     </h4>
 
                     <div class="d-flex justify-content-and align-items-center">
-
-
                         <?php
                         if (isset($utilisateur) && $utilisateur['deleted_at'] == null) { ?>
 
