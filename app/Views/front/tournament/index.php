@@ -16,21 +16,9 @@
                             <h5 class="card-title"><?= esc($tournament['name']); ?></h5>
                             <p class="card-text">
                                 Jeu : <?= esc($tournament['game_name'] ?? 'Inconnue'); ?><br>
-                                Nombre de joueurs qualifiés : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?><br>
                                 Nombre de participants : <?= esc($tournament['nb_player'] ?? 'Inconnue'); ?>
 
                             </p>
-
-                            <?php
-                            // Vérifier si l'utilisateur est inscrit
-                            $isRegistered = false;
-                            foreach ($qualifications as $qualification) {
-                                if ($qualification['id_tournament'] == $tournament['id'] && $qualification['id_user'] == $user->id) {
-                                    $isRegistered = true;
-                                    break;
-                                }
-                            }
-                            ?>
 
                             <?php if ($isRegistered): ?>
                                 <!-- Bouton de désinscription -->
